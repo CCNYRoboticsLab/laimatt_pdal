@@ -7,9 +7,13 @@ import mysql.connector
 import os
 import sys
 import shutil
+from flask import Flask, request, send_file
 
-def csvToLas(test_dir, length):
-    path = test_dir + "/component_las_" + test_dir
+app = Flask(__name__)
+
+
+def csvToLas(test_dir, test_index, length):
+    path = test_dir + "/component_las_" + test_index
     os.makedirs(path)
         
     for x in range(length):
@@ -83,74 +87,92 @@ def bounding_box_info(las_file_path):
         y_min, y_max = f.header.y_min, f.header.y_max
         z_min, z_max = f.header.z_min, f.header.z_max
         
-        center_x = (x_min + x_max) / 2
-        center_y = (y_min + y_max) / 2
-        center_z = (z_min + z_max) / 2 
-        length = x_max - x_min
-        width = y_max - y_min
-        height = z_max - z_min
+        center_x = round(((x_min + x_max) / 2), 3)
+        center_y = round(((y_min + y_max) / 2), 3)
+        center_z = round(((z_min + z_max) / 2 ), 3)
+        length = round((x_max - x_min), 3)
+        width = round((y_max - y_min), 3)
+        height = round((z_max - z_min), 3)
         
         return [center_x, center_y, center_z, length, width, height]
     
-def populate_db(test_dir):
-    # mydb = mysql.connector.connect(
-    #     host="localhost",
-    #     user="root",  # Your MySQL username
-    #     password="",  # Your MySQL password (if any)
-    #     port=3308,  # Your MySQL port
-    #     unix_socket="/opt/lampp/var/mysql/mysql.sock"
-    # )
-    # cursor = mydb.cursor()
-    # cursor.execute("USE sample")
+def populate_db(test_dir, test_index):
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="root",  # Your MySQL username
+        password="",  # Your MySQL password (if any)
+        port=3308,  # Your MySQL port
+        unix_socket="/opt/lampp/var/mysql/mysql.sock"
+    )
+    cursor = mydb.cursor()
+    cursor.execute("USE sample")
     
-
-    for filepath in sorted(glob.iglob(test_dir + '/component_las_' + test_dir + '/*')):
+    filepaths = sorted(glob.iglob(test_dir + '/component_las_' + test_index + '/*'))
+    # next(filepaths)
+    
+    project_id = "pid_test"
+    task_id = "tid_test"
+    
+    for filepath in filepaths:
         b = bounding_box_info(filepath)
+        link = "http://localhost:2000/download/" + project_id + "/" + task_id + "/" + os.path.basename(filepath)
+        
         query = "INSERT INTO patch_crack (center_lat, center_long, center_alt, box_length, box_width, box_height, type, file_path_las) " + \
-            "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', 3, %s)"
-        data = (b[0], b[1], b[2], b[3], b[4], b[5], filepath)
+            "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', 2, %s)"
+        data = (b[0], b[1], b[2], b[3], b[4], b[5], link)
         print(query, data)
-        # cursor.execute(query, data)
-        # mydb.commit()
+        cursor.execute(query, data)
+        mydb.commit()
 
-    # Close the connection when done
-    # mydb.close()
+    mydb.close()    
     
-def populate_csv(test_dir):
+def populate_csv(test_dir, test_index):
     csvoutput = open(test_dir + '/component_data.csv', 'w', newline='')
     writer = csv.writer(csvoutput)
     writer.writerow(['x', 'y', 'z', 'length', 'width', 'height', 'type', 'original file'])
     
-    for filepath in sorted(glob.iglob(test_dir + '/component_las_' + test_dir + '/*')):
+    for filepath in sorted(glob.iglob(test_dir + '/component_las_' + test_index + '/*')):
         box_info = bounding_box_info(filepath)
         writer.writerow(box_info + ['crack', filepath])
     
     csvoutput.close()
         
-min_p = 23
-tolerance = .5
-max_p = 100
+def create_components(): 
+    min_p = 20
+    tolerance = .5
+    max_p = 10000
 
-if len(sys.argv) > 3:
-    min_p = int(sys.argv[1])
-    tolerance = float(sys.argv[2])
-    max_p = int(sys.argv[3])
+    if not (os.path.exists("tests")):
+        os.makedirs("tests")
 
-if not (os.path.exists("tests")):
-    os.makedirs("tests")
+    test_dir = "tests/test_" + str(min_p) + "_" + str(tolerance) + "_" + str(max_p)
+    test_index = str(min_p) + "_" + str(tolerance) + "_" + str(max_p)
+    if os.path.exists(test_dir):
+        print(test_dir + " already exists, remaking")
+        shutil.rmtree(test_dir)
+    os.makedirs(test_dir)
 
-test_dir = "tests/test_"+ str(min_p) + "_" + str(tolerance) + "_" + str(max_p)
-if os.path.exists(test_dir):
-    print(test_dir + " already exists, remaking")
-    shutil.rmtree(test_dir)
-os.makedirs(test_dir)
+    lasToCsv(test_dir, min_p, tolerance, max_p)
+    index = create_csvs(test_dir)
+    csvToLas(test_dir, test_index, index + 1)
 
+    populate_db(test_dir, test_index)
+    populate_csv(test_dir, test_index)
+    return "success"
 
+@app.route('/components', methods=['GET'])
+def components_api():
+    processed_data = create_components()
 
-lasToCsv(test_dir, min_p, tolerance, max_p)
-index = create_csvs(test_dir)
-csvToLas(test_dir, index + 1)
+    return processed_data
 
-populate_db(test_dir)
-populate_csv(test_dir)
+@app.route('/download/<project_id>/<task_id>/<filename>', methods=['GET'])
+def download(project_id, task_id, filename):
+    # Assuming files are stored in a directory named 'files' under the app root directory
+    uploads = os.path.join(app.root_path, 'tests/test_20_0.5_10000/component_las_20_0.5_10000')
 
+    # Use send_file function to send the file
+    return send_file(os.path.join(uploads, filename), as_attachment=True)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=2000, debug=True)
