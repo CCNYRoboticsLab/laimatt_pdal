@@ -25,11 +25,11 @@ def csvToLas(test_dir, test_index, length):
         ]
         result = subprocess.run(command, capture_output=True, text=True, check=True)
     
-def lasToCsv(test_dir, min_p, tolerance, max_p):
+def lasToCsv(test_dir, min_p, tolerance, max_p, file_name):
     command = [
         "pdal",
         "translate",
-        "3sections - 170 - 253.las",
+        file_name,
         test_dir + "/full_segmented.csv",
         "-f",
         "filters.cluster",
@@ -137,22 +137,25 @@ def populate_csv(test_dir, test_index):
     
     csvoutput.close()
         
-def create_components(): 
+def create_components(folder_path): 
     min_p = 20
     tolerance = .5
     max_p = 10000
+    
+    test_path = os.path.join(folder_path, "tests")
+    file_name = os.path.join(folder_path, "filtered_model.las")
+    
+    if not (os.path.exists(test_path)):
+        os.makedirs(os.path.join(test_path))
 
-    if not (os.path.exists("tests")):
-        os.makedirs("tests")
-
-    test_dir = "tests/test_" + str(min_p) + "_" + str(tolerance) + "_" + str(max_p)
+    test_dir = os.path.join(folder_path, ("test_" + str(min_p) + "_" + str(tolerance) + "_" + str(max_p)))
     test_index = str(min_p) + "_" + str(tolerance) + "_" + str(max_p)
     if os.path.exists(test_dir):
         print(test_dir + " already exists, remaking")
         shutil.rmtree(test_dir)
     os.makedirs(test_dir)
 
-    lasToCsv(test_dir, min_p, tolerance, max_p)
+    lasToCsv(test_dir, min_p, tolerance, max_p, file_name)
     index = create_csvs(test_dir)
     csvToLas(test_dir, test_index, index + 1)
 
@@ -162,7 +165,8 @@ def create_components():
 
 @app.route('/components', methods=['GET'])
 def components_api():
-    processed_data = create_components()
+    folder_path = "filler"
+    processed_data = create_components(folder_path)
 
     return processed_data
 
@@ -173,6 +177,7 @@ def download(project_id, task_id, filename):
 
     # Use send_file function to send the file
     return send_file(os.path.join(uploads, filename), as_attachment=True)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=2000, debug=True)
