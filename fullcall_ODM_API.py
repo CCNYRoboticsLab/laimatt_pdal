@@ -122,6 +122,10 @@ def create_task(file):
     update_data = (project_id, task_id, pc_str, all_str, tm_str, SQLid)
     cursor.execute(update_query, update_data)
     mydb.commit()
+    
+    filter_from_webodm(project_id, task_id)
+    create_components(project_id, task_id, SQLid)
+    
     cursor.close()
     mydb.close()
     shutil.rmtree(temp_dir)
@@ -215,16 +219,25 @@ def task_api():
 @app.route('/test', methods=['POST'])
 def test_api():
     
-    project_id = 151
-    task_id = "c9c7deff-e46b-4ed5-8316-79ddf9d19352"
+    project_id = 152
+    task_id = "dc089eca-32e5-4580-b567-8846f9c1a4a2"
+    uid = 15
     
     filter_from_webodm(project_id, task_id)
     
-    folder_path = 'tasks/task_{}_{}/'.format(project_id, task_id)
-    
-    # create_components(folder_path)
+    create_components(project_id, task_id, uid)
         
     return test_db()
+
+@app.route('/download/<project_id>/<task_id>/<filename>', methods=['GET'])
+def download(project_id, task_id, filename):
+    # Assuming files are stored in a directory named 'files' under the app root directory
+    task = os.path.join(app.root_path, 'tasks/task_{}_{}'.format(project_id, task_id))
+    
+    uploads = os.path.join(task, 'tests/test_10_0.2_10000/component_las_10_0.2_10000')
+
+    # Use send_file function to send the file
+    return send_file(os.path.join(uploads, filename), as_attachment=True)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=2000, debug=True)

@@ -1,26 +1,19 @@
 import subprocess
-import csv
-import pandas as pd
 import laspy
-import glob
-import mysql.connector
 import os
-import sys
 import shutil
-from flask import Flask, request, send_file
-import open3d as o3d
 import numpy as np
 import laspy
 import requests
 
 def filter_points_laspy(file_path, output_file):
     # Open the LAS file
-    in_file = laspy.file.File(file_path, mode='r')
+    in_file = laspy.read(file_path)
 
     # Extract RGB color information
     colors = np.vstack((in_file.red, in_file.green, in_file.blue)).T / 256.0
 
-    # Print the range of the RGB channels
+    # # Print the range of the RGB channels
     # print("Range of R channel:", np.min(colors[:, 0]), np.max(colors[:, 0]))
     # print("Range of G channel:", np.min(colors[:, 1]), np.max(colors[:, 1]))
     # print("Range of B channel:", np.min(colors[:, 2]), np.max(colors[:, 2]))
@@ -31,26 +24,33 @@ def filter_points_laspy(file_path, output_file):
     # Apply the mask to filter points and colors
     red_points = np.vstack((in_file.x, in_file.y, in_file.z)).T[red_mask]
     red_colors = (colors * 255)[red_mask].astype(np.uint16)
+    red_info = np.hstack((red_points, red_colors))
 
     # Close the input LAS file
+    
+    print(red_mask)
+    print(red_points)
+    print(red_colors)
+    print(in_file.header)
+    print(red_info)
 
     # Create a new LAS file for the filtered points
-    out_file = laspy.file.File(output_file, mode='w', header=in_file.header)
+    with laspy.open(output_file, mode='w', header=in_file.header) as out_writer:
+        
+        
+        out_file = laspy.ScaleAwarePointRecord.zeros(red_info.shape[0], header=in_file.header)
+        # Copy header and points data
+        out_file.x = red_points[:, 0]
+        out_file.y = red_points[:, 1]
+        out_file.z = red_points[:, 2]
 
-    # Copy header and points data
-    out_file.x = red_points[:, 0]
-    out_file.y = red_points[:, 1]
-    out_file.z = red_points[:, 2]
 
-
-    # Update color information
-    out_file.red = red_colors[:, 0]
-    out_file.green = red_colors[:, 1]
-    out_file.blue = red_colors[:, 2]
-
-    # Close the output LAS file
-    in_file.close()
-    out_file.close()
+        # Update color information
+        out_file.red = red_colors[:, 0]
+        out_file.green = red_colors[:, 1]
+        out_file.blue = red_colors[:, 2]
+        
+        out_writer.write_points(out_file)
 
     print(f"Filtered LAS file saved to {output_file}")
 
@@ -89,7 +89,6 @@ def authenticate():
 
 def filter_from_webodm(project_id, task_id):
     # webodm_path = '/var/lib/docker/volumes/webodm_appmedia/_data/project/{}/task/{}/assets/'.format(project_id, task_id) + 'ccny_postprocessing' 
-
     # if not os.path.exists(webodm_path):
     #     # Create the directory
     #     os.makedirs(webodm_path)
@@ -106,5 +105,7 @@ def filter_from_webodm(project_id, task_id):
     output_file = task_path + '/filtered_model.las'  # Specify output file path for filtered points
     url = 'https://webodm.boshang.online/api/projects/{}/tasks/{}/download/georeferenced_model.laz'.format(project_id, task_id)
     download_file(url, input_file)
+    
+    # alt = '/var/lib/docker/volumes/webodm_appmedia/_data/project/{}/task/{}/assets/odm_georeferencing/odm_georeferenced_model.laz'.format(project_id, task_id)
     lazTolas(input_file, input_las)
     filtered_red_pcd = filter_points_laspy(input_las, output_file)

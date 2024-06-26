@@ -77,7 +77,6 @@ def create_csvs(test_dir):
                 # Otherwise, add the row to the current row
                 writer.writerow(row)
         csvoutput.close()
-
     return index
 
     
@@ -96,7 +95,7 @@ def bounding_box_info(las_file_path):
         
         return [center_x, center_y, center_z, length, width, height]
     
-def populate_db(test_dir, test_index):
+def populate_db(test_dir, test_index, uid, project_id, task_id):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",  # Your MySQL username
@@ -108,18 +107,15 @@ def populate_db(test_dir, test_index):
     cursor.execute("USE sample")
     
     filepaths = sorted(glob.iglob(test_dir + '/component_las_' + test_index + '/*'))
-    # next(filepaths)
-    
-    project_id = "pid_test"
-    task_id = "tid_test"
+    next(iter(filepaths))
     
     for filepath in filepaths:
         b = bounding_box_info(filepath)
-        link = "http://localhost:2000/download/" + project_id + "/" + task_id + "/" + os.path.basename(filepath)
+        link = "http://localhost:2000/download/" + str(project_id) + "/" + task_id + "/" + os.path.basename(filepath)
         
-        query = "INSERT INTO patch_crack (center_lat, center_long, center_alt, box_length, box_width, box_height, type, file_path_las) " + \
-            "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', 2, %s)"
-        data = (b[0], b[1], b[2], b[3], b[4], b[5], link)
+        query = "INSERT INTO patch_crack (center_lat, center_long, center_alt, box_length, box_width, box_height, type, file_path_las, whole_data_id) " + \
+            "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', 2, %s, %s)"
+        data = (b[0], b[1], b[2], b[3], b[4], b[5], link, str(uid))
         print(query, data)
         cursor.execute(query, data)
         mydb.commit()
@@ -137,18 +133,19 @@ def populate_csv(test_dir, test_index):
     
     csvoutput.close()
         
-def create_components(folder_path): 
-    min_p = 20
-    tolerance = .5
+def create_components(project_id, task_id, uid): 
+    min_p = 10
+    tolerance = .2
     max_p = 10000
     
+    folder_path = 'tasks/task_{}_{}/'.format(project_id, task_id)
     test_path = os.path.join(folder_path, "tests")
     file_name = os.path.join(folder_path, "filtered_model.las")
     
     if not (os.path.exists(test_path)):
         os.makedirs(os.path.join(test_path))
 
-    test_dir = os.path.join(folder_path, ("test_" + str(min_p) + "_" + str(tolerance) + "_" + str(max_p)))
+    test_dir = os.path.join(test_path, ("test_" + str(min_p) + "_" + str(tolerance) + "_" + str(max_p)))
     test_index = str(min_p) + "_" + str(tolerance) + "_" + str(max_p)
     if os.path.exists(test_dir):
         print(test_dir + " already exists, remaking")
@@ -159,13 +156,17 @@ def create_components(folder_path):
     index = create_csvs(test_dir)
     csvToLas(test_dir, test_index, index + 1)
 
-    populate_db(test_dir, test_index)
+    populate_db(test_dir, test_index, uid, project_id, task_id)
     populate_csv(test_dir, test_index)
     return "success"
 
 @app.route('/components', methods=['GET'])
 def components_api():
-    folder_path = "filler"
+    project_id = 151
+    task_id = "c9c7deff-e46b-4ed5-8316-79ddf9d19352"
+        
+    folder_path = 'tasks/task_{}_{}/'.format(project_id, task_id)
+    
     processed_data = create_components(folder_path)
 
     return processed_data
@@ -173,7 +174,9 @@ def components_api():
 @app.route('/download/<project_id>/<task_id>/<filename>', methods=['GET'])
 def download(project_id, task_id, filename):
     # Assuming files are stored in a directory named 'files' under the app root directory
-    uploads = os.path.join(app.root_path, 'tests/test_20_0.5_10000/component_las_20_0.5_10000')
+    task = os.path.join(app.root_path, 'task_{}_{}'.format(project_id, task_id))
+    
+    uploads = os.path.join(task, 'tests/test_10_0.2_10000/component_las_10_0.2_10000')
 
     # Use send_file function to send the file
     return send_file(os.path.join(uploads, filename), as_attachment=True)
