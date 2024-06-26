@@ -1,4 +1,4 @@
-from flask import Flask, request, send_file, jsonify
+from flask import Flask, request, send_file, jsonify, Response
 import mysql.connector
 import requests
 import glob
@@ -10,13 +10,16 @@ import tempfile
 import shutil
 from filter import filter_from_webodm
 from pdal_script import create_components
+from enum import Enum
+from io import BytesIO
+
+class TypeColor(Enum):
+    GREEN_CRACKS = 2
+    RED_STAINS = 3
+    BLUE_SPALLS = 4
 
 SUCCESS = 0
 NO_IMAGES = -1
-NO_PROJECT = 1
-NO_TASK = 2
-NO_FILE = 3
-NO_JSON = 4
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024 * 1024 # 4 gb limit
@@ -36,20 +39,24 @@ def create_task(file):
     
     token = authenticate()
     headers = {'Authorization': 'JWT {}'.format(token)}
-    
-    temp_dir = tempfile.mkdtemp()
-    zip_filepath = os.path.join(temp_dir, file.filename)
-    file.save(zip_filepath)
         
-    # Extract the contents of the zip file
-    extract_dir = os.path.join(temp_dir, 'extracted_folder')
-    with zipfile.ZipFile(zip_filepath, 'r') as zip_ref:
-        zip_ref.extractall(extract_dir)
+    try:
+        temp_dir = tempfile.mkdtemp()
+        zip_filepath = os.path.join(temp_dir, file.filename)
+        file.save(zip_filepath)
+        # Extract the contents of the zip file
+        extract_dir = os.path.join(temp_dir, 'extracted_folder')
+        with zipfile.ZipFile(zip_filepath, 'r') as zip_ref:
+            zip_ref.extractall(extract_dir)
+    except:
+        cursor.close()
+        mydb.close()
+        shutil.rmtree(temp_dir)
+        return "bad input file\n"
         
     # Now you can process the contents of the extracted folder
     # For example, print the list of files extracted
     extracted_files = os.listdir(extract_dir)
-    print(extract_dir)
     print(f"Extracted files: {extracted_files}")
     
     images = glob.glob(extract_dir + "/*.JPG") + glob.glob(extract_dir + "/*.jpg") + glob.glob(extract_dir + "/*.png") + glob.glob(extract_dir + "/*.PNG")
@@ -61,17 +68,11 @@ def create_task(file):
         
     print("images: " + str(files))
     if len(files) < 2:
-        json_data = {
-            "task_id": "",
-            "project_id": NO_IMAGES, 
-            "authentication": token
-        }
-        with open("data.json", "w") as json_file:
-            json.dump(json_data, json_file)
-        print("INSERT INTO whole_data (status) VALUES (1)")
         cursor.execute("INSERT INTO whole_data (status) VALUES (1)")
         mydb.commit()
-        return json_data
+        cursor.close()
+        mydb.close()
+        return "not enough images\n"
 
     projecturl = "http://localhost:8000/api/projects/"
     data  = {
@@ -123,8 +124,9 @@ def create_task(file):
     cursor.execute(update_query, update_data)
     mydb.commit()
     
-    filter_from_webodm(project_id, task_id)
-    create_components(project_id, task_id, SQLid)
+    color = TypeColor.BLUE_SPALLS.value
+    filter_from_webodm(project_id, task_id, color)
+    create_components(project_id, task_id, SQLid, color)
     
     cursor.close()
     mydb.close()
@@ -164,7 +166,6 @@ def getFilePath(headers, project_id, task_id, request_type):
             return 'webodm.boshang.online/api/projects/{}/tasks/{}/download/all.zip'.format(project_id, task_id)
         else:
             return "all.zip file not found"
-        
         
 def test_db():
     token = authenticate()    
@@ -222,15 +223,16 @@ def test_api():
     project_id = 152
     task_id = "dc089eca-32e5-4580-b567-8846f9c1a4a2"
     uid = 15
+    color = TypeColor.BLUE_SPALLS.value
     
-    filter_from_webodm(project_id, task_id)
-    
-    create_components(project_id, task_id, uid)
+    filter_from_webodm(project_id, task_id, color)
+    create_components(project_id, task_id, uid, color)
         
     return test_db()
 
 @app.route('/download/<project_id>/<task_id>/<filename>', methods=['GET'])
 def download(project_id, task_id, filename):
+    
     # Assuming files are stored in a directory named 'files' under the app root directory
     task = os.path.join(app.root_path, 'tasks/task_{}_{}'.format(project_id, task_id))
     
@@ -238,6 +240,25 @@ def download(project_id, task_id, filename):
 
     # Use send_file function to send the file
     return send_file(os.path.join(uploads, filename), as_attachment=True)
+
+@app.route('/downloadwebodm/<project_id>/<task_id>/<filename>', methods=['GET'])
+def downloadwebodm(project_id, task_id, filename):
+    
+    url = 'https://' + getFilePath(authenticate(), project_id, task_id, filename)
+    token = authenticate()
+    headers = {'Authorization': 'JWT {}'.format(token)}
+    # Send a GET request to the URL
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        # If the request is successful, create a BytesIO object to hold the file contents
+        file_stream = BytesIO(response.content)
+        file_stream.seek(0)  # Move pointer to the beginning of the stream
+        
+        # Send the file to the client
+        return send_file(file_stream, as_attachment=True, download_name='textured_model.glb')
+    else:
+        return Response('Failed to fetch file from URL', status=response.status_code)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=2000, debug=True)

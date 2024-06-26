@@ -8,9 +8,9 @@ import os
 import sys
 import shutil
 from flask import Flask, request, send_file
+from filter import getName, TypeColor
 
 app = Flask(__name__)
-
 
 def csvToLas(test_dir, test_index, length):
     path = test_dir + "/component_las_" + test_index
@@ -95,7 +95,7 @@ def bounding_box_info(las_file_path):
         
         return [center_x, center_y, center_z, length, width, height]
     
-def populate_db(test_dir, test_index, uid, project_id, task_id):
+def populate_db(test_dir, test_index, uid, project_id, task_id, color):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",  # Your MySQL username
@@ -114,8 +114,8 @@ def populate_db(test_dir, test_index, uid, project_id, task_id):
         link = "http://localhost:2000/download/" + str(project_id) + "/" + task_id + "/" + os.path.basename(filepath)
         
         query = "INSERT INTO patch_crack (center_lat, center_long, center_alt, box_length, box_width, box_height, type, file_path_las, whole_data_id) " + \
-            "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', 2, %s, %s)"
-        data = (b[0], b[1], b[2], b[3], b[4], b[5], link, str(uid))
+            "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', %s, %s, %s)"
+        data = (b[0], b[1], b[2], b[3], b[4], b[5], color, link, uid)
         print(query, data)
         cursor.execute(query, data)
         mydb.commit()
@@ -133,14 +133,14 @@ def populate_csv(test_dir, test_index):
     
     csvoutput.close()
         
-def create_components(project_id, task_id, uid): 
+def create_components(project_id, task_id, uid, color): 
     min_p = 10
     tolerance = .2
     max_p = 10000
     
     folder_path = 'tasks/task_{}_{}/'.format(project_id, task_id)
     test_path = os.path.join(folder_path, "tests")
-    file_name = os.path.join(folder_path, "filtered_model.las")
+    file_name = os.path.join(folder_path, '{}_filtered_model.las'.format(getName(TypeColor, color)))
     
     if not (os.path.exists(test_path)):
         os.makedirs(os.path.join(test_path))
@@ -156,7 +156,7 @@ def create_components(project_id, task_id, uid):
     index = create_csvs(test_dir)
     csvToLas(test_dir, test_index, index + 1)
 
-    populate_db(test_dir, test_index, uid, project_id, task_id)
+    populate_db(test_dir, test_index, uid, project_id, task_id, color)
     populate_csv(test_dir, test_index)
     return "success"
 
@@ -180,7 +180,6 @@ def download(project_id, task_id, filename):
 
     # Use send_file function to send the file
     return send_file(os.path.join(uploads, filename), as_attachment=True)
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=2000, debug=True)
