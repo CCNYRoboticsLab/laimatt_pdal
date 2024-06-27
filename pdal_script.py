@@ -115,7 +115,7 @@ def populate_db(test_dir, test_index, uid, project_id, task_id, color):
         query = "INSERT INTO patch_crack (center_lat, center_long, center_alt, box_length, box_width, box_height, type, file_path_las, whole_data_id) " + \
             "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', %s, %s, %s)"
         data = (b[0], b[1], b[2], b[3], b[4], b[5], color, link, uid)
-        print(query, data)
+        # print(query, data)
         cursor.execute(query, data)
         mydb.commit()
 
