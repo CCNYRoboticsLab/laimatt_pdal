@@ -1,14 +1,13 @@
+from flask import Flask, send_file
+from filter import getName, TypeColor
+import pandas as pd
 import subprocess
 import csv
-import pandas as pd
 import laspy
 import glob
 import mysql.connector
 import os
-import sys
 import shutil
-from flask import Flask, request, send_file
-from filter import getName, TypeColor
 
 app = Flask(__name__)
 
@@ -111,7 +110,7 @@ def populate_db(test_dir, test_index, uid, project_id, task_id, color):
     
     for filepath in filepaths:
         b = bounding_box_info(filepath)
-        link = "http://localhost:2000/download/" + str(project_id) + "/" + task_id + "/" + os.path.basename(filepath)
+        link = "https://laimatt.boshang.online/download/" + str(project_id) + "/" + task_id + "/" + os.path.basename(filepath)
         
         query = "INSERT INTO patch_crack (center_lat, center_long, center_alt, box_length, box_width, box_height, type, file_path_las, whole_data_id) " + \
             "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', %s, %s, %s)"

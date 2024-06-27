@@ -1,11 +1,11 @@
+from enum import Enum
+import numpy as np
 import subprocess
 import laspy
 import os
 import shutil
-import numpy as np
 import laspy
 import requests
-from enum import Enum
 
 class TypeColor(Enum):
     GREEN_CRACKS = 2
