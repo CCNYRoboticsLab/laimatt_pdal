@@ -16,8 +16,9 @@ def csvToLas(test_dir, test_index, length):
     os.makedirs(path)
         
     for x in range(length):
+        pdal = "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/pdal"
         command = [
-            "pdal",
+            pdal,
             "translate",
             test_dir + "/component_csv/component_" + f"{x:06d}" + ".csv",
             path + "/component_" + f"{x:06d}" + ".las"
@@ -25,8 +26,9 @@ def csvToLas(test_dir, test_index, length):
         result = subprocess.run(command, capture_output=True, text=True, check=True)
     
 def lasToCsv(test_dir, min_p, tolerance, max_p, file_name):
+    pdal = "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/pdal"
     command = [
-        "pdal",
+        pdal,
         "translate",
         file_name,
         test_dir + "/full_segmented.csv",
