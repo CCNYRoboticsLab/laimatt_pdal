@@ -4,7 +4,6 @@ import subprocess
 import laspy
 import os
 import shutil
-import laspy
 import requests
 
 class TypeColor(Enum):
