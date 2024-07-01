@@ -253,15 +253,15 @@ def task_api():
 @app.route('/test', methods=['POST'])
 def test_api():
     
-    project_id = 152
-    task_id = "dc089eca-32e5-4580-b567-8846f9c1a4a2"
-    uid = 15
+    project_id = 161
+    task_id = "a4a3d759-3e67-4d08-bb6a-21c3136965c1"
+    uid = 23
     color = TypeColor.BLUE_SPALLS.value
     
     filter_from_webodm(project_id, task_id, color)
     create_components(project_id, task_id, uid, color)
         
-    return test_db()
+    return "created components"
 
 @app.route('/download/<project_id>/<task_id>/<filename>', methods=['GET'])
 def download(project_id, task_id, filename):

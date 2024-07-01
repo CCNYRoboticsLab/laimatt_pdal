@@ -145,8 +145,8 @@ class WebODM_API:
         self.cursor.execute(update_query, update_data)
         self.mydb.commit()
         
-        # filter_from_webodm(project_id, self.task_id[index], color)
-        # create_components(project_id, self.task_id[index], self.SQLid[index], color)
+        filter_from_webodm(project_id, self.task_id[index], color)
+        create_components(project_id, self.task_id[index], self.SQLid[index], color)
         
         return None
 
@@ -167,10 +167,10 @@ class WebODM_API:
         }
         project_id = requests.post(projecturl, headers=self.headers, data=data).json()['id']
 
-        self.init_nodeODM(project_id, files, TypeColor.ORIGINAL.value, 1)
-        self.init_nodeODM(project_id, files, TypeColor.GREEN_CRACKS.value, 6)
-        self.init_nodeODM(project_id, files, TypeColor.RED_STAINS.value, 3)
-        self.init_nodeODM(project_id, files, TypeColor.BLUE_SPALLS.value, 4)
+        # self.init_nodeODM(project_id, files, TypeColor.ORIGINAL.value, 1)
+        # self.init_nodeODM(project_id, files, TypeColor.GREEN_CRACKS.value, 6)
+        # self.init_nodeODM(project_id, files, TypeColor.RED_STAINS.value, 3)
+        self.init_nodeODM(project_id, files, TypeColor.BLUE_SPALLS.value, 1)
         
         # if (self.SQLid == -1):
         #     self.cursor.close()
@@ -178,8 +178,8 @@ class WebODM_API:
         #     shutil.rmtree(self.temp_dir)
         #     return "database error"
         
-        self.post_task(project_id, TypeColor.GREEN_CRACKS.value)
-        self.post_task(project_id, TypeColor.RED_STAINS.value)
+        # self.post_task(project_id, TypeColor.GREEN_CRACKS.value)
+        # self.post_task(project_id, TypeColor.RED_STAINS.value)
         self.post_task(project_id, TypeColor.BLUE_SPALLS.value)
         
         self.cursor.close()
