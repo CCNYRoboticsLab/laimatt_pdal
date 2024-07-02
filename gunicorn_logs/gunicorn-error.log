@@ -5369,3 +5369,3012 @@ tasks/task_176_84be4f1d-ab95-4494-a581-4420c7c06680/tests/test_10_0.2_10000 alre
 [2024-07-01 16:56:42 -0400] [1397711] [INFO] Booting worker with pid: 1397711
 [2024-07-01 16:56:42 -0400] [1397691] [DEBUG] 4 workers
 [2024-07-01 16:56:49 -0400] [1397710] [DEBUG] POST /test
+[2024-07-02 10:13:04 -0400] [1397708] [DEBUG] GET /download/161/a4a3d759-3e67-4d08-bb6a-21c3136965c1/component_000004.las
+[2024-07-02 10:15:35 -0400] [1397691] [INFO] Handling signal: term
+[2024-07-02 10:15:35 -0400] [1397710] [INFO] Worker exiting (pid: 1397710)
+tasks/task_176_84be4f1d-ab95-4494-a581-4420c7c06680/tests/test_10_0.2_10000 already exists, remaking
+[2024-07-02 10:15:35 -0400] [1397711] [INFO] Worker exiting (pid: 1397711)
+[2024-07-02 10:15:35 -0400] [1397707] [INFO] Worker exiting (pid: 1397707)
+[2024-07-02 10:15:35 -0400] [1397708] [INFO] Worker exiting (pid: 1397708)
+[2024-07-02 10:15:37 -0400] [1397691] [INFO] Shutting down: Master
+[2024-07-02 10:15:44 -0400] [3517597] [DEBUG] Current configuration:
+  config: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:2000']
+  backlog: 2048
+  workers: 4
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 86400
+  graceful_timeout: 86400
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/roboticslab/Developer/laimatt/laimatt_pdal
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: fullcall_ODM_API_server:laimatt_app
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f7b133dafc0>
+  on_reload: <function OnReload.on_reload at 0x7f7b133db100>
+  when_ready: <function WhenReady.when_ready at 0x7f7b133db240>
+  pre_fork: <function Prefork.pre_fork at 0x7f7b133db380>
+  post_fork: <function Postfork.post_fork at 0x7f7b133db4c0>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f7b133db600>
+  worker_int: <function WorkerInt.worker_int at 0x7f7b133db740>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f7b133db880>
+  pre_exec: <function PreExec.pre_exec at 0x7f7b133db9c0>
+  pre_request: <function PreRequest.pre_request at 0x7f7b133dbb00>
+  post_request: <function PostRequest.post_request at 0x7f7b133dbba0>
+  child_exit: <function ChildExit.child_exit at 0x7f7b133dbce0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f7b133dbe20>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f7b133dbf60>
+  on_exit: <function OnExit.on_exit at 0x7f7b133f40e0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f7b133f42c0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+  permit_unconventional_http_method: False
+  permit_unconventional_http_version: False
+  casefold_http_method: False
+  header_map: drop
+  tolerate_dangerous_framing: False
+[2024-07-02 10:15:44 -0400] [3517597] [INFO] Starting gunicorn 22.0.0
+[2024-07-02 10:15:44 -0400] [3517597] [DEBUG] Arbiter booted
+[2024-07-02 10:15:44 -0400] [3517597] [INFO] Listening at: http://0.0.0.0:2000 (3517597)
+[2024-07-02 10:15:44 -0400] [3517597] [INFO] Using worker: sync
+[2024-07-02 10:15:44 -0400] [3517607] [INFO] Booting worker with pid: 3517607
+[2024-07-02 10:15:44 -0400] [3517608] [INFO] Booting worker with pid: 3517608
+[2024-07-02 10:15:44 -0400] [3517609] [INFO] Booting worker with pid: 3517609
+[2024-07-02 10:15:44 -0400] [3517610] [INFO] Booting worker with pid: 3517610
+[2024-07-02 10:15:44 -0400] [3517597] [DEBUG] 4 workers
+[2024-07-02 11:22:13 -0400] [3517609] [INFO] Worker exiting (pid: 3517609)
+[2024-07-02 11:22:13 -0400] [3517610] [INFO] Worker exiting (pid: 3517610)
+[2024-07-02 11:22:13 -0400] [3517607] [INFO] Worker exiting (pid: 3517607)
+[2024-07-02 11:22:13 -0400] [3517608] [INFO] Worker exiting (pid: 3517608)
+[2024-07-02 11:22:13 -0400] [3517597] [INFO] Handling signal: term
+[2024-07-02 11:22:14 -0400] [3517597] [ERROR] Worker (pid:3517607) was sent SIGTERM!
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 224, in run
+    handler()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 257, in handle_term
+    raise StopIteration
+StopIteration
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1114, in emit
+    self.flush()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1094, in flush
+    self.stream.flush()
+RuntimeError: reentrant call inside <_io.BufferedWriter name='/home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-error.log'>
+Call stack:
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 67, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]", prog=prog).run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 236, in run
+    super().run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 227, in run
+    self.halt()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 342, in halt
+    self.stop()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 396, in stop
+    time.sleep(0.1)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 554, in reap_workers
+    self.log.error(msg)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/glogging.py", line 272, in error
+    self.error_log.error(msg, *args, **kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1518, in error
+    self._log(ERROR, msg, args, **kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1634, in _log
+    self.handle(record)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1644, in handle
+    self.callHandlers(record)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1706, in callHandlers
+    hdlr.handle(record)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 978, in handle
+    self.emit(record)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1230, in emit
+    StreamHandler.emit(self, record)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1114, in emit
+    self.flush()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1094, in flush
+    self.stream.flush()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 554, in reap_workers
+    self.log.error(msg)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/glogging.py", line 272, in error
+    self.error_log.error(msg, *args, **kwargs)
+Message: 'Worker (pid:3517608) was sent SIGTERM!'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 224, in run
+    handler()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 257, in handle_term
+    raise StopIteration
+StopIteration
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1114, in emit
+    self.flush()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1094, in flush
+    self.stream.flush()
+RuntimeError: reentrant call inside <_io.BufferedWriter name='/home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-error.log'>
+Call stack:
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 67, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]", prog=prog).run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 236, in run
+    super().run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 227, in run
+    self.halt()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 342, in halt
+    self.stop()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 396, in stop
+    time.sleep(0.1)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 554, in reap_workers
+    self.log.error(msg)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/glogging.py", line 272, in error
+    self.error_log.error(msg, *args, **kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1518, in error
+    self._log(ERROR, msg, args, **kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1634, in _log
+    self.handle(record)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1644, in handle
+    self.callHandlers(record)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1706, in callHandlers
+    hdlr.handle(record)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 978, in handle
+    self.emit(record)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1230, in emit
+    StreamHandler.emit(self, record)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1114, in emit
+    self.flush()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1094, in flush
+    self.stream.flush()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 554, in reap_workers
+    self.log.error(msg)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/glogging.py", line 272, in error
+    self.error_log.error(msg, *args, **kwargs)
+Message: 'Worker (pid:3517609) was sent SIGTERM!'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 224, in run
+    handler()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 257, in handle_term
+    raise StopIteration
+StopIteration
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1114, in emit
+    self.flush()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1094, in flush
+    self.stream.flush()
+RuntimeError: reentrant call inside <_io.BufferedWriter name='/home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-error.log'>
+Call stack:
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 67, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]", prog=prog).run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 236, in run
+    super().run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 227, in run
+    self.halt()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 342, in halt
+    self.stop()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 396, in stop
+    time.sleep(0.1)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 554, in reap_workers
+    self.log.error(msg)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/glogging.py", line 272, in error
+    self.error_log.error(msg, *args, **kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1518, in error
+    self._log(ERROR, msg, args, **kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1634, in _log
+    self.handle(record)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1644, in handle
+    self.callHandlers(record)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1706, in callHandlers
+    hdlr.handle(record)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 978, in handle
+    self.emit(record)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1230, in emit
+    StreamHandler.emit(self, record)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1114, in emit
+    self.flush()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/logging/__init__.py", line 1094, in flush
+    self.stream.flush()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 554, in reap_workers
+    self.log.error(msg)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/glogging.py", line 272, in error
+    self.error_log.error(msg, *args, **kwargs)
+Message: 'Worker (pid:3517610) was sent SIGTERM!'
+Arguments: ()
+[2024-07-02 11:22:15 -0400] [3517597] [INFO] Shutting down: Master
+[2024-07-02 11:23:36 -0400] [1586] [DEBUG] Current configuration:
+  config: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:2000']
+  backlog: 2048
+  workers: 4
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 86400
+  graceful_timeout: 86400
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/roboticslab/Developer/laimatt/laimatt_pdal
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: fullcall_ODM_API_server:laimatt_app
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7fb30dc62fc0>
+  on_reload: <function OnReload.on_reload at 0x7fb30dc63100>
+  when_ready: <function WhenReady.when_ready at 0x7fb30dc63240>
+  pre_fork: <function Prefork.pre_fork at 0x7fb30dc63380>
+  post_fork: <function Postfork.post_fork at 0x7fb30dc634c0>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7fb30dc63600>
+  worker_int: <function WorkerInt.worker_int at 0x7fb30dc63740>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7fb30dc63880>
+  pre_exec: <function PreExec.pre_exec at 0x7fb30dc639c0>
+  pre_request: <function PreRequest.pre_request at 0x7fb30dc63b00>
+  post_request: <function PostRequest.post_request at 0x7fb30dc63ba0>
+  child_exit: <function ChildExit.child_exit at 0x7fb30dc63ce0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7fb30dc63e20>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7fb30dc63f60>
+  on_exit: <function OnExit.on_exit at 0x7fb30dc7c0e0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7fb30dc7c2c0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+  permit_unconventional_http_method: False
+  permit_unconventional_http_version: False
+  casefold_http_method: False
+  header_map: drop
+  tolerate_dangerous_framing: False
+[2024-07-02 11:23:36 -0400] [1586] [INFO] Starting gunicorn 22.0.0
+[2024-07-02 11:23:36 -0400] [1586] [DEBUG] Arbiter booted
+[2024-07-02 11:23:36 -0400] [1586] [INFO] Listening at: http://0.0.0.0:2000 (1586)
+[2024-07-02 11:23:36 -0400] [1586] [INFO] Using worker: sync
+[2024-07-02 11:23:36 -0400] [3681] [INFO] Booting worker with pid: 3681
+[2024-07-02 11:23:36 -0400] [3682] [INFO] Booting worker with pid: 3682
+[2024-07-02 11:23:36 -0400] [3690] [INFO] Booting worker with pid: 3690
+[2024-07-02 11:23:36 -0400] [3691] [INFO] Booting worker with pid: 3691
+[2024-07-02 11:23:36 -0400] [1586] [DEBUG] 4 workers
+[2024-07-02 11:26:45 -0400] [3690] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:45 -0400] [3691] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:45 -0400] [3682] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:45 -0400] [3681] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:46 -0400] [3690] [INFO] Worker exiting (pid: 3690)
+[2024-07-02 11:26:46 -0400] [3691] [INFO] Worker exiting (pid: 3691)
+[2024-07-02 11:26:46 -0400] [3682] [INFO] Worker exiting (pid: 3682)
+[2024-07-02 11:26:46 -0400] [3681] [INFO] Worker exiting (pid: 3681)
+[2024-07-02 11:26:46 -0400] [1586] [ERROR] Worker (pid:3691) exited with code 3
+[2024-07-02 11:26:46 -0400] [1586] [ERROR] Worker (pid:3682) exited with code 3
+[2024-07-02 11:26:46 -0400] [1586] [ERROR] Worker (pid:3681) exited with code 3
+object address  : 0x7fb30dcce4a0
+object refcount : 2
+object type     : 0x559e2bdd4060
+object type name: HaltServer
+object repr     : HaltServer('Worker failed to boot.', 3)
+lost sys.stderr
+[2024-07-02 11:26:47 -0400] [17120] [DEBUG] Current configuration:
+  config: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:2000']
+  backlog: 2048
+  workers: 4
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 86400
+  graceful_timeout: 86400
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/roboticslab/Developer/laimatt/laimatt_pdal
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: fullcall_ODM_API_server:laimatt_app
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f99e133efc0>
+  on_reload: <function OnReload.on_reload at 0x7f99e133f100>
+  when_ready: <function WhenReady.when_ready at 0x7f99e133f240>
+  pre_fork: <function Prefork.pre_fork at 0x7f99e133f380>
+  post_fork: <function Postfork.post_fork at 0x7f99e133f4c0>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f99e133f600>
+  worker_int: <function WorkerInt.worker_int at 0x7f99e133f740>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f99e133f880>
+  pre_exec: <function PreExec.pre_exec at 0x7f99e133f9c0>
+  pre_request: <function PreRequest.pre_request at 0x7f99e133fb00>
+  post_request: <function PostRequest.post_request at 0x7f99e133fba0>
+  child_exit: <function ChildExit.child_exit at 0x7f99e133fce0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f99e133fe20>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f99e133ff60>
+  on_exit: <function OnExit.on_exit at 0x7f99e13580e0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f99e13582c0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+  permit_unconventional_http_method: False
+  permit_unconventional_http_version: False
+  casefold_http_method: False
+  header_map: drop
+  tolerate_dangerous_framing: False
+[2024-07-02 11:26:47 -0400] [17120] [INFO] Starting gunicorn 22.0.0
+[2024-07-02 11:26:47 -0400] [17120] [DEBUG] Arbiter booted
+[2024-07-02 11:26:47 -0400] [17120] [INFO] Listening at: http://0.0.0.0:2000 (17120)
+[2024-07-02 11:26:47 -0400] [17120] [INFO] Using worker: sync
+[2024-07-02 11:26:47 -0400] [17121] [INFO] Booting worker with pid: 17121
+[2024-07-02 11:26:47 -0400] [17122] [INFO] Booting worker with pid: 17122
+[2024-07-02 11:26:47 -0400] [17134] [INFO] Booting worker with pid: 17134
+[2024-07-02 11:26:47 -0400] [17146] [INFO] Booting worker with pid: 17146
+[2024-07-02 11:26:47 -0400] [17120] [DEBUG] 4 workers
+[2024-07-02 11:26:47 -0400] [17122] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:47 -0400] [17122] [INFO] Worker exiting (pid: 17122)
+[2024-07-02 11:26:47 -0400] [17121] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:47 -0400] [17121] [INFO] Worker exiting (pid: 17121)
+[2024-07-02 11:26:47 -0400] [17134] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:47 -0400] [17134] [INFO] Worker exiting (pid: 17134)
+[2024-07-02 11:26:47 -0400] [17120] [ERROR] Worker (pid:17122) exited with code 3
+[2024-07-02 11:26:47 -0400] [17120] [ERROR] Worker (pid:17134) was sent SIGTERM!
+[2024-07-02 11:26:47 -0400] [17120] [ERROR] Worker (pid:17121) was sent SIGTERM!
+[2024-07-02 11:26:48 -0400] [17146] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:48 -0400] [17146] [INFO] Worker exiting (pid: 17146)
+[2024-07-02 11:26:48 -0400] [17120] [ERROR] Worker (pid:17146) exited with code 3
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 209, in run
+    self.sleep()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 360, in sleep
+    ready = select.select([self.PIPE[0]], [], [], 1.0)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 530, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+             ^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 67, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]", prog=prog).run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 236, in run
+    super().run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 229, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 342, in halt
+    self.stop()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 396, in stop
+    time.sleep(0.1)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 530, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+[2024-07-02 11:26:48 -0400] [17179] [DEBUG] Current configuration:
+  config: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:2000']
+  backlog: 2048
+  workers: 4
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 86400
+  graceful_timeout: 86400
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/roboticslab/Developer/laimatt/laimatt_pdal
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: fullcall_ODM_API_server:laimatt_app
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f20ff436fc0>
+  on_reload: <function OnReload.on_reload at 0x7f20ff437100>
+  when_ready: <function WhenReady.when_ready at 0x7f20ff437240>
+  pre_fork: <function Prefork.pre_fork at 0x7f20ff437380>
+  post_fork: <function Postfork.post_fork at 0x7f20ff4374c0>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f20ff437600>
+  worker_int: <function WorkerInt.worker_int at 0x7f20ff437740>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f20ff437880>
+  pre_exec: <function PreExec.pre_exec at 0x7f20ff4379c0>
+  pre_request: <function PreRequest.pre_request at 0x7f20ff437b00>
+  post_request: <function PostRequest.post_request at 0x7f20ff437ba0>
+  child_exit: <function ChildExit.child_exit at 0x7f20ff437ce0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f20ff437e20>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f20ff437f60>
+  on_exit: <function OnExit.on_exit at 0x7f20ff4500e0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f20ff4502c0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+  permit_unconventional_http_method: False
+  permit_unconventional_http_version: False
+  casefold_http_method: False
+  header_map: drop
+  tolerate_dangerous_framing: False
+[2024-07-02 11:26:48 -0400] [17179] [INFO] Starting gunicorn 22.0.0
+[2024-07-02 11:26:48 -0400] [17179] [DEBUG] Arbiter booted
+[2024-07-02 11:26:48 -0400] [17179] [INFO] Listening at: http://0.0.0.0:2000 (17179)
+[2024-07-02 11:26:48 -0400] [17179] [INFO] Using worker: sync
+[2024-07-02 11:26:48 -0400] [17180] [INFO] Booting worker with pid: 17180
+[2024-07-02 11:26:48 -0400] [17181] [INFO] Booting worker with pid: 17181
+[2024-07-02 11:26:48 -0400] [17182] [INFO] Booting worker with pid: 17182
+[2024-07-02 11:26:48 -0400] [17209] [INFO] Booting worker with pid: 17209
+[2024-07-02 11:26:48 -0400] [17179] [DEBUG] 4 workers
+[2024-07-02 11:26:49 -0400] [17180] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:49 -0400] [17180] [INFO] Worker exiting (pid: 17180)
+[2024-07-02 11:26:49 -0400] [17182] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:49 -0400] [17182] [INFO] Worker exiting (pid: 17182)
+[2024-07-02 11:26:49 -0400] [17181] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:49 -0400] [17181] [INFO] Worker exiting (pid: 17181)
+[2024-07-02 11:26:49 -0400] [17179] [ERROR] Worker (pid:17180) exited with code 3
+[2024-07-02 11:26:49 -0400] [17179] [ERROR] Worker (pid:17181) was sent SIGTERM!
+[2024-07-02 11:26:49 -0400] [17179] [ERROR] Worker (pid:17182) was sent SIGTERM!
+[2024-07-02 11:26:49 -0400] [17209] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:49 -0400] [17209] [INFO] Worker exiting (pid: 17209)
+[2024-07-02 11:26:49 -0400] [17179] [ERROR] Worker (pid:17209) exited with code 3
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 209, in run
+    self.sleep()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 360, in sleep
+    ready = select.select([self.PIPE[0]], [], [], 1.0)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 530, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+             ^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 67, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]", prog=prog).run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 236, in run
+    super().run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 229, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 342, in halt
+    self.stop()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 396, in stop
+    time.sleep(0.1)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 530, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+[2024-07-02 11:26:49 -0400] [17239] [DEBUG] Current configuration:
+  config: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:2000']
+  backlog: 2048
+  workers: 4
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 86400
+  graceful_timeout: 86400
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/roboticslab/Developer/laimatt/laimatt_pdal
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: fullcall_ODM_API_server:laimatt_app
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f2b09936fc0>
+  on_reload: <function OnReload.on_reload at 0x7f2b09937100>
+  when_ready: <function WhenReady.when_ready at 0x7f2b09937240>
+  pre_fork: <function Prefork.pre_fork at 0x7f2b09937380>
+  post_fork: <function Postfork.post_fork at 0x7f2b099374c0>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f2b09937600>
+  worker_int: <function WorkerInt.worker_int at 0x7f2b09937740>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f2b09937880>
+  pre_exec: <function PreExec.pre_exec at 0x7f2b099379c0>
+  pre_request: <function PreRequest.pre_request at 0x7f2b09937b00>
+  post_request: <function PostRequest.post_request at 0x7f2b09937ba0>
+  child_exit: <function ChildExit.child_exit at 0x7f2b09937ce0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f2b09937e20>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f2b09937f60>
+  on_exit: <function OnExit.on_exit at 0x7f2b099500e0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f2b099502c0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+  permit_unconventional_http_method: False
+  permit_unconventional_http_version: False
+  casefold_http_method: False
+  header_map: drop
+  tolerate_dangerous_framing: False
+[2024-07-02 11:26:49 -0400] [17239] [INFO] Starting gunicorn 22.0.0
+[2024-07-02 11:26:49 -0400] [17239] [DEBUG] Arbiter booted
+[2024-07-02 11:26:49 -0400] [17239] [INFO] Listening at: http://0.0.0.0:2000 (17239)
+[2024-07-02 11:26:49 -0400] [17239] [INFO] Using worker: sync
+[2024-07-02 11:26:49 -0400] [17242] [INFO] Booting worker with pid: 17242
+[2024-07-02 11:26:49 -0400] [17244] [INFO] Booting worker with pid: 17244
+[2024-07-02 11:26:49 -0400] [17267] [INFO] Booting worker with pid: 17267
+[2024-07-02 11:26:49 -0400] [17268] [INFO] Booting worker with pid: 17268
+[2024-07-02 11:26:50 -0400] [17239] [DEBUG] 4 workers
+[2024-07-02 11:26:50 -0400] [17242] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:50 -0400] [17242] [INFO] Worker exiting (pid: 17242)
+[2024-07-02 11:26:50 -0400] [17244] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:50 -0400] [17244] [INFO] Worker exiting (pid: 17244)
+[2024-07-02 11:26:50 -0400] [17239] [ERROR] Worker (pid:17242) exited with code 3
+[2024-07-02 11:26:50 -0400] [17239] [ERROR] Worker (pid:17244) was sent SIGTERM!
+[2024-07-02 11:26:50 -0400] [17268] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:50 -0400] [17268] [INFO] Worker exiting (pid: 17268)
+[2024-07-02 11:26:50 -0400] [17267] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:50 -0400] [17267] [INFO] Worker exiting (pid: 17267)
+[2024-07-02 11:26:50 -0400] [17239] [ERROR] Worker (pid:17268) exited with code 3
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 209, in run
+    self.sleep()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 360, in sleep
+    ready = select.select([self.PIPE[0]], [], [], 1.0)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 530, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+             ^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 67, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]", prog=prog).run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 236, in run
+    super().run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 229, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 342, in halt
+    self.stop()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 396, in stop
+    time.sleep(0.1)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 530, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+[2024-07-02 11:26:51 -0400] [17298] [DEBUG] Current configuration:
+  config: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:2000']
+  backlog: 2048
+  workers: 4
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 86400
+  graceful_timeout: 86400
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/roboticslab/Developer/laimatt/laimatt_pdal
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: fullcall_ODM_API_server:laimatt_app
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f48180d6fc0>
+  on_reload: <function OnReload.on_reload at 0x7f48180d7100>
+  when_ready: <function WhenReady.when_ready at 0x7f48180d7240>
+  pre_fork: <function Prefork.pre_fork at 0x7f48180d7380>
+  post_fork: <function Postfork.post_fork at 0x7f48180d74c0>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f48180d7600>
+  worker_int: <function WorkerInt.worker_int at 0x7f48180d7740>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f48180d7880>
+  pre_exec: <function PreExec.pre_exec at 0x7f48180d79c0>
+  pre_request: <function PreRequest.pre_request at 0x7f48180d7b00>
+  post_request: <function PostRequest.post_request at 0x7f48180d7ba0>
+  child_exit: <function ChildExit.child_exit at 0x7f48180d7ce0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f48180d7e20>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f48180d7f60>
+  on_exit: <function OnExit.on_exit at 0x7f48180f00e0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f48180f02c0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+  permit_unconventional_http_method: False
+  permit_unconventional_http_version: False
+  casefold_http_method: False
+  header_map: drop
+  tolerate_dangerous_framing: False
+[2024-07-02 11:26:51 -0400] [17298] [INFO] Starting gunicorn 22.0.0
+[2024-07-02 11:26:51 -0400] [17298] [DEBUG] Arbiter booted
+[2024-07-02 11:26:51 -0400] [17298] [INFO] Listening at: http://0.0.0.0:2000 (17298)
+[2024-07-02 11:26:51 -0400] [17298] [INFO] Using worker: sync
+[2024-07-02 11:26:51 -0400] [17300] [INFO] Booting worker with pid: 17300
+[2024-07-02 11:26:51 -0400] [17312] [INFO] Booting worker with pid: 17312
+[2024-07-02 11:26:51 -0400] [17314] [INFO] Booting worker with pid: 17314
+[2024-07-02 11:26:51 -0400] [17315] [INFO] Booting worker with pid: 17315
+[2024-07-02 11:26:51 -0400] [17298] [DEBUG] 4 workers
+[2024-07-02 11:26:51 -0400] [17300] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:51 -0400] [17300] [INFO] Worker exiting (pid: 17300)
+[2024-07-02 11:26:51 -0400] [17298] [ERROR] Worker (pid:17300) exited with code 3
+[2024-07-02 11:26:51 -0400] [17314] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:51 -0400] [17314] [INFO] Worker exiting (pid: 17314)
+[2024-07-02 11:26:51 -0400] [17315] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:51 -0400] [17315] [INFO] Worker exiting (pid: 17315)
+[2024-07-02 11:26:51 -0400] [17312] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:51 -0400] [17312] [INFO] Worker exiting (pid: 17312)
+[2024-07-02 11:26:51 -0400] [17298] [ERROR] Worker (pid:17314) exited with code 3
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 209, in run
+    self.sleep()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 360, in sleep
+    ready = select.select([self.PIPE[0]], [], [], 1.0)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 530, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+             ^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 67, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]", prog=prog).run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 236, in run
+    super().run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 229, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 342, in halt
+    self.stop()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 396, in stop
+    time.sleep(0.1)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 530, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+[2024-07-02 11:26:52 -0400] [17356] [DEBUG] Current configuration:
+  config: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:2000']
+  backlog: 2048
+  workers: 4
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 86400
+  graceful_timeout: 86400
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/roboticslab/Developer/laimatt/laimatt_pdal
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: fullcall_ODM_API_server:laimatt_app
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f5377aeafc0>
+  on_reload: <function OnReload.on_reload at 0x7f5377aeb100>
+  when_ready: <function WhenReady.when_ready at 0x7f5377aeb240>
+  pre_fork: <function Prefork.pre_fork at 0x7f5377aeb380>
+  post_fork: <function Postfork.post_fork at 0x7f5377aeb4c0>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f5377aeb600>
+  worker_int: <function WorkerInt.worker_int at 0x7f5377aeb740>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f5377aeb880>
+  pre_exec: <function PreExec.pre_exec at 0x7f5377aeb9c0>
+  pre_request: <function PreRequest.pre_request at 0x7f5377aebb00>
+  post_request: <function PostRequest.post_request at 0x7f5377aebba0>
+  child_exit: <function ChildExit.child_exit at 0x7f5377aebce0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f5377aebe20>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f5377aebf60>
+  on_exit: <function OnExit.on_exit at 0x7f5377b040e0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f5377b042c0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+  permit_unconventional_http_method: False
+  permit_unconventional_http_version: False
+  casefold_http_method: False
+  header_map: drop
+  tolerate_dangerous_framing: False
+[2024-07-02 11:26:52 -0400] [17356] [INFO] Starting gunicorn 22.0.0
+[2024-07-02 11:26:52 -0400] [17356] [DEBUG] Arbiter booted
+[2024-07-02 11:26:52 -0400] [17356] [INFO] Listening at: http://0.0.0.0:2000 (17356)
+[2024-07-02 11:26:52 -0400] [17356] [INFO] Using worker: sync
+[2024-07-02 11:26:52 -0400] [17358] [INFO] Booting worker with pid: 17358
+[2024-07-02 11:26:52 -0400] [17361] [INFO] Booting worker with pid: 17361
+[2024-07-02 11:26:52 -0400] [17373] [INFO] Booting worker with pid: 17373
+[2024-07-02 11:26:52 -0400] [17385] [INFO] Booting worker with pid: 17385
+[2024-07-02 11:26:52 -0400] [17356] [DEBUG] 4 workers
+[2024-07-02 11:26:52 -0400] [17358] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:52 -0400] [17358] [INFO] Worker exiting (pid: 17358)
+[2024-07-02 11:26:52 -0400] [17361] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:52 -0400] [17361] [INFO] Worker exiting (pid: 17361)
+[2024-07-02 11:26:52 -0400] [17373] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:52 -0400] [17373] [INFO] Worker exiting (pid: 17373)
+[2024-07-02 11:26:52 -0400] [17356] [ERROR] Worker (pid:17358) exited with code 3
+[2024-07-02 11:26:52 -0400] [17356] [ERROR] Worker (pid:17373) was sent SIGTERM!
+[2024-07-02 11:26:52 -0400] [17356] [ERROR] Worker (pid:17361) was sent SIGTERM!
+[2024-07-02 11:26:53 -0400] [17385] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 323, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 60, in __init__
+    self.mydb = mysql.connector.connect(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/pooling.py", line 322, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 140, in __init__
+    self.connect(**kwargs)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/abstracts.py", line 1363, in connect
+    self._open_connection()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/mysql/connector/connection_cext.py", line 328, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.InterfaceError: 2002 (HY000): Can't connect to local MySQL server through socket '/opt/lampp/var/mysql/mysql.sock' (2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+                ^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+                    ^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1204, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 315, in <module>
+    api = WebODM_API()
+          ^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 70, in __init__
+    raise DatabaseException("database exception error")
+fullcall_ODM_API_server.DatabaseException: database exception error
+[2024-07-02 11:26:53 -0400] [17385] [INFO] Worker exiting (pid: 17385)
+[2024-07-02 11:26:53 -0400] [17356] [ERROR] Worker (pid:17385) exited with code 3
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 209, in run
+    self.sleep()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 360, in sleep
+    ready = select.select([self.PIPE[0]], [], [], 1.0)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 530, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+             ^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/wsgiapp.py", line 67, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]", prog=prog).run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 236, in run
+    super().run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 229, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 342, in halt
+    self.stop()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 396, in stop
+    time.sleep(0.1)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/gunicorn/arbiter.py", line 530, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+[2024-07-02 12:45:32 -0400] [146561] [DEBUG] Current configuration:
+  config: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:2000']
+  backlog: 2048
+  workers: 4
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 86400
+  graceful_timeout: 86400
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/roboticslab/Developer/laimatt/laimatt_pdal
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: fullcall_ODM_API_server:laimatt_app
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7ff78ab66fc0>
+  on_reload: <function OnReload.on_reload at 0x7ff78ab67100>
+  when_ready: <function WhenReady.when_ready at 0x7ff78ab67240>
+  pre_fork: <function Prefork.pre_fork at 0x7ff78ab67380>
+  post_fork: <function Postfork.post_fork at 0x7ff78ab674c0>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7ff78ab67600>
+  worker_int: <function WorkerInt.worker_int at 0x7ff78ab67740>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7ff78ab67880>
+  pre_exec: <function PreExec.pre_exec at 0x7ff78ab679c0>
+  pre_request: <function PreRequest.pre_request at 0x7ff78ab67b00>
+  post_request: <function PostRequest.post_request at 0x7ff78ab67ba0>
+  child_exit: <function ChildExit.child_exit at 0x7ff78ab67ce0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7ff78ab67e20>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7ff78ab67f60>
+  on_exit: <function OnExit.on_exit at 0x7ff78ab800e0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7ff78ab802c0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+  permit_unconventional_http_method: False
+  permit_unconventional_http_version: False
+  casefold_http_method: False
+  header_map: drop
+  tolerate_dangerous_framing: False
+[2024-07-02 12:45:32 -0400] [146561] [INFO] Starting gunicorn 22.0.0
+[2024-07-02 12:45:32 -0400] [146561] [DEBUG] Arbiter booted
+[2024-07-02 12:45:32 -0400] [146561] [INFO] Listening at: http://0.0.0.0:2000 (146561)
+[2024-07-02 12:45:32 -0400] [146561] [INFO] Using worker: sync
+[2024-07-02 12:45:32 -0400] [146573] [INFO] Booting worker with pid: 146573
+[2024-07-02 12:45:32 -0400] [146574] [INFO] Booting worker with pid: 146574
+[2024-07-02 12:45:33 -0400] [146591] [INFO] Booting worker with pid: 146591
+[2024-07-02 12:45:33 -0400] [146592] [INFO] Booting worker with pid: 146592
+[2024-07-02 12:45:33 -0400] [146561] [DEBUG] 4 workers
+[2024-07-02 12:45:50 -0400] [146592] [DEBUG] POST /task
+Extracted files: ['S1074592.JPG', 'S1074591.JPG', 'S1074593.JPG']
+INSERT INTO whole_data (status) VALUES (3)
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Task has completed!
+[2024-07-02 13:01:59,090] ERROR in app: Exception on /task [POST]
+Traceback (most recent call last):
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 263, in task_api
+    return api.create_task(file)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 187, in create_task
+    result = self.post_task(project_id, TypeColor.BLUE_SPALLS.value)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/fullcall_ODM_API_server.py", line 152, in post_task
+    filter_from_webodm(project_id, self.task_id[index], color)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/filter.py", line 119, in filter_from_webodm
+    lazTolas(input_file, input_las)
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/filter.py", line 88, in lazTolas
+    result = subprocess.run(command, capture_output=True, text=True, check=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/lib/python3.11/subprocess.py", line 1953, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'pdal'
+[2024-07-02 13:28:48 -0400] [146561] [INFO] Handling signal: term
+[2024-07-02 13:28:48 -0400] [146574] [INFO] Worker exiting (pid: 146574)
+[2024-07-02 13:28:48 -0400] [146592] [INFO] Worker exiting (pid: 146592)
+File downloaded successfully and saved to: tasks/task_179_81083255-25db-45c3-8a19-b802a9f96801/original_model.laz
+[2024-07-02 13:28:48 -0400] [146573] [INFO] Worker exiting (pid: 146573)
+[2024-07-02 13:28:48 -0400] [146591] [INFO] Worker exiting (pid: 146591)
+[2024-07-02 13:28:50 -0400] [146561] [INFO] Shutting down: Master
+[2024-07-02 13:28:59 -0400] [274130] [DEBUG] Current configuration:
+  config: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:2000']
+  backlog: 2048
+  workers: 4
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 86400
+  graceful_timeout: 86400
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/roboticslab/Developer/laimatt/laimatt_pdal
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: fullcall_ODM_API_server:laimatt_app
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f3184702fc0>
+  on_reload: <function OnReload.on_reload at 0x7f3184703100>
+  when_ready: <function WhenReady.when_ready at 0x7f3184703240>
+  pre_fork: <function Prefork.pre_fork at 0x7f3184703380>
+  post_fork: <function Postfork.post_fork at 0x7f31847034c0>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f3184703600>
+  worker_int: <function WorkerInt.worker_int at 0x7f3184703740>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f3184703880>
+  pre_exec: <function PreExec.pre_exec at 0x7f31847039c0>
+  pre_request: <function PreRequest.pre_request at 0x7f3184703b00>
+  post_request: <function PostRequest.post_request at 0x7f3184703ba0>
+  child_exit: <function ChildExit.child_exit at 0x7f3184703ce0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f3184703e20>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f3184703f60>
+  on_exit: <function OnExit.on_exit at 0x7f318471c0e0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f318471c2c0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+  permit_unconventional_http_method: False
+  permit_unconventional_http_version: False
+  casefold_http_method: False
+  header_map: drop
+  tolerate_dangerous_framing: False
+[2024-07-02 13:28:59 -0400] [274130] [INFO] Starting gunicorn 22.0.0
+[2024-07-02 13:28:59 -0400] [274130] [DEBUG] Arbiter booted
+[2024-07-02 13:28:59 -0400] [274130] [INFO] Listening at: http://0.0.0.0:2000 (274130)
+[2024-07-02 13:28:59 -0400] [274130] [INFO] Using worker: sync
+[2024-07-02 13:28:59 -0400] [274179] [INFO] Booting worker with pid: 274179
+[2024-07-02 13:28:59 -0400] [274180] [INFO] Booting worker with pid: 274180
+[2024-07-02 13:28:59 -0400] [274190] [INFO] Booting worker with pid: 274190
+[2024-07-02 13:28:59 -0400] [274191] [INFO] Booting worker with pid: 274191
+[2024-07-02 13:28:59 -0400] [274130] [DEBUG] 4 workers
+[2024-07-02 13:29:02 -0400] [274191] [DEBUG] POST /task
+Extracted files: ['S1074592.JPG', 'S1074591.JPG', 'S1074593.JPG']
+INSERT INTO whole_data (status) VALUES (3)
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Currently processing: BLUE_SPALLS, hold on...
+Task has completed!
+[2024-07-02 14:04:06 -0400] [274130] [INFO] Handling signal: term
+[2024-07-02 14:04:06 -0400] [274180] [INFO] Worker exiting (pid: 274180)
+[2024-07-02 14:04:06 -0400] [274191] [INFO] Worker exiting (pid: 274191)
+File downloaded successfully and saved to: tasks/task_180_49b8fe6d-ef80-477d-8c2f-47c863828fef/original_model.laz
+Filtered LAS file saved to tasks/task_180_49b8fe6d-ef80-477d-8c2f-47c863828fef/BLUE_SPALLS_filtered_model.las
+[2024-07-02 14:04:06 -0400] [274190] [INFO] Worker exiting (pid: 274190)
+[2024-07-02 14:04:06 -0400] [274179] [INFO] Worker exiting (pid: 274179)
+[2024-07-02 14:04:08 -0400] [274130] [INFO] Shutting down: Master
+[2024-07-02 14:04:16 -0400] [402474] [DEBUG] Current configuration:
+  config: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn.conf.py
+  wsgi_app: None
+  bind: ['0.0.0.0:2000']
+  backlog: 2048
+  workers: 4
+  worker_class: sync
+  threads: 1
+  worker_connections: 1000
+  max_requests: 0
+  max_requests_jitter: 0
+  timeout: 86400
+  graceful_timeout: 86400
+  keepalive: 2
+  limit_request_line: 4094
+  limit_request_fields: 100
+  limit_request_field_size: 8190
+  reload: False
+  reload_engine: auto
+  reload_extra_files: []
+  spew: False
+  check_config: False
+  print_config: False
+  preload_app: False
+  sendfile: None
+  reuse_port: False
+  chdir: /home/roboticslab/Developer/laimatt/laimatt_pdal
+  daemon: False
+  raw_env: []
+  pidfile: None
+  worker_tmp_dir: None
+  user: 1000
+  group: 1000
+  umask: 0
+  initgroups: False
+  tmp_upload_dir: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  forwarded_allow_ips: ['127.0.0.1']
+  accesslog: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-access.log
+  disable_redirect_access_to_syslog: False
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  errorlog: /home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-error.log
+  loglevel: debug
+  capture_output: True
+  logger_class: gunicorn.glogging.Logger
+  logconfig: None
+  logconfig_dict: {}
+  logconfig_json: None
+  syslog_addr: udp://localhost:514
+  syslog: False
+  syslog_prefix: None
+  syslog_facility: user
+  enable_stdio_inheritance: False
+  statsd_host: None
+  dogstatsd_tags: 
+  statsd_prefix: 
+  proc_name: None
+  default_proc_name: fullcall_ODM_API_server:laimatt_app
+  pythonpath: None
+  paste: None
+  on_starting: <function OnStarting.on_starting at 0x7f8260bbefc0>
+  on_reload: <function OnReload.on_reload at 0x7f8260bbf100>
+  when_ready: <function WhenReady.when_ready at 0x7f8260bbf240>
+  pre_fork: <function Prefork.pre_fork at 0x7f8260bbf380>
+  post_fork: <function Postfork.post_fork at 0x7f8260bbf4c0>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f8260bbf600>
+  worker_int: <function WorkerInt.worker_int at 0x7f8260bbf740>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7f8260bbf880>
+  pre_exec: <function PreExec.pre_exec at 0x7f8260bbf9c0>
+  pre_request: <function PreRequest.pre_request at 0x7f8260bbfb00>
+  post_request: <function PostRequest.post_request at 0x7f8260bbfba0>
+  child_exit: <function ChildExit.child_exit at 0x7f8260bbfce0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7f8260bbfe20>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f8260bbff60>
+  on_exit: <function OnExit.on_exit at 0x7f8260bd80e0>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7f8260bd82c0>
+  proxy_protocol: False
+  proxy_allow_ips: ['127.0.0.1']
+  keyfile: None
+  certfile: None
+  ssl_version: 2
+  cert_reqs: 0
+  ca_certs: None
+  suppress_ragged_eofs: True
+  do_handshake_on_connect: False
+  ciphers: None
+  raw_paste_global_conf: []
+  strip_header_spaces: False
+  permit_unconventional_http_method: False
+  permit_unconventional_http_version: False
+  casefold_http_method: False
+  header_map: drop
+  tolerate_dangerous_framing: False
+[2024-07-02 14:04:16 -0400] [402474] [INFO] Starting gunicorn 22.0.0
+[2024-07-02 14:04:16 -0400] [402474] [DEBUG] Arbiter booted
+[2024-07-02 14:04:16 -0400] [402474] [INFO] Listening at: http://0.0.0.0:2000 (402474)
+[2024-07-02 14:04:16 -0400] [402474] [INFO] Using worker: sync
+[2024-07-02 14:04:16 -0400] [402518] [INFO] Booting worker with pid: 402518
+[2024-07-02 14:04:16 -0400] [402523] [INFO] Booting worker with pid: 402523
+[2024-07-02 14:04:16 -0400] [402524] [INFO] Booting worker with pid: 402524
+[2024-07-02 14:04:16 -0400] [402525] [INFO] Booting worker with pid: 402525
+[2024-07-02 14:04:16 -0400] [402474] [DEBUG] 4 workers

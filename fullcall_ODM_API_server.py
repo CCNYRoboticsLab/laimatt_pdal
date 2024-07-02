@@ -272,7 +272,7 @@ def test_api():
     uid = 23
     color = TypeColor.BLUE_SPALLS.value
     
-    # filter_from_webodm(project_id, task_id, color)
+    filter_from_webodm(project_id, task_id, color)
     create_components(project_id, task_id, uid, color)
         
     return "clustering done\n"

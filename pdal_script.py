@@ -149,7 +149,7 @@ def create_components(project_id, task_id, uid, color):
     test_dir = os.path.join(test_path, ("test_" + str(min_p) + "_" + str(tolerance) + "_" + str(max_p)))
     test_index = str(min_p) + "_" + str(tolerance) + "_" + str(max_p)
     if os.path.exists(test_dir):
-        print(test_dir + " already exists, remaking")
+        print(test_dir + " already exists, remaking", flush=True)
         shutil.rmtree(test_dir)
     os.makedirs(test_dir)
 

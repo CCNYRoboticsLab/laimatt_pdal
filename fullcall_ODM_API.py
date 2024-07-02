@@ -16,6 +16,9 @@ import subprocess
 class GetFileException(Exception):
     pass
 
+class DatabaseException(Exception):
+    pass
+
 class TypeColor(Enum):
     ORIGINAL = 1
     GREEN_CRACKS = 2
@@ -28,8 +31,25 @@ def getName(enum_class, value):
             return enum_member.name
     return None  
 
-app = Flask(__name__)
-app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024 * 1024 # 4 gb limit
+def run_gunicorn():
+    bind_address = '0.0.0.0:2000'
+    workers = 4
+    module_name = 'fullcall_ODM_API_server'
+    app_name = 'laimatt_app'
+
+    # Command to run Gunicorn
+    cmd = [
+        'gunicorn',
+        '-w', str(workers),
+        '-b', bind_address,
+        f'{module_name}:{app_name}'
+    ]
+
+    # Run the command
+    subprocess.run(cmd)
+
+laimatt_app = Flask(__name__)
+laimatt_app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024 * 1024 # 4 gb limit
 
 class WebODM_API:
 
@@ -47,27 +67,10 @@ class WebODM_API:
             self.cursor = self.mydb.cursor()
             self.cursor.execute("USE sample")
         except:
-            return "database connection error\n"
+            raise DatabaseException("database exception error")
 
     SUCCESS = 0
     NO_IMAGES = -1
-
-    def run_gunicorn(self):
-        bind_address = '0.0.0.0:2000'
-        workers = 4
-        module_name = 'app'
-        app_name = 'app'
-
-        # Command to run Gunicorn
-        cmd = [
-            'gunicorn',
-            '-w', str(workers),
-            '-b', bind_address,
-            f'{module_name}:{app_name}'
-        ]
-
-        # Run the command
-        subprocess.run(cmd)
         
     def extract_files(self, file):
         try:
@@ -87,7 +90,7 @@ class WebODM_API:
         # Now you can process the contents of the extracted folder
         # For example, print the list of files extracted
         extracted_files = os.listdir(extract_dir)
-        print(f"Extracted files: {extracted_files}")
+        print(f"Extracted files: {extracted_files}", flush=True)
                 
         images = glob.glob(extract_dir + "/*.JPG") + glob.glob(extract_dir + "/*.jpg") + glob.glob(extract_dir + "/*.png") + glob.glob(extract_dir + "/*.PNG")
                 
@@ -107,7 +110,7 @@ class WebODM_API:
         }
         self.task_id[index] = requests.post(taskurl, headers = self.headers, files=files, data = data).json()['id']
         
-        print("INSERT INTO whole_data (status) VALUES (3)")
+        print("INSERT INTO whole_data (status) VALUES (3)", flush=True)
         self.cursor.execute("INSERT INTO whole_data (status) VALUES (3)")
         self.mydb.commit()
         self.SQLid[index] = self.cursor.lastrowid
@@ -120,20 +123,21 @@ class WebODM_API:
                         headers=self.headers).json()
             try:
                 if res['status'] == 40:
-                    print("Task has completed!")
+                    print("Task has completed!", flush=True)
                     break
                 elif res['status'] == 30:
-                    print(getName(TypeColor, color) + " Task failed: {}\n".format(res))
+                    print(getName(TypeColor, color) + " Task failed: {}\n".format(res), flush=True)
                     self.cursor.execute("UPDATE whole_data SET status = 2 WHERE uid = " + str(self.SQLid[index]))
                     self.mydb.commit()
                     return getName(TypeColor, color) + " Task failed: {}\n".format(res)
                 else:
-                    print("Currently processing: " + getName(TypeColor, color) + ", hold on...")
+                    print("Currently processing: " + getName(TypeColor, color) + ", hold on...", flush=True)
                     time.sleep(30)
-            except:
-                print(getName(TypeColor, color) + " Task failed: {}\n".format(res))
+            except Exception as error:
+                print(getName(TypeColor, color) + " Task failed: {}\n".format(res), flush=True)
                 self.cursor.execute("UPDATE whole_data SET status = 2 WHERE uid = " + str(self.SQLid[index]))
                 self.mydb.commit()
+                print(error, flush=True)
                 return getName(TypeColor, color) + " Task failed: {}\n"
                 
         
@@ -145,8 +149,8 @@ class WebODM_API:
         self.cursor.execute(update_query, update_data)
         self.mydb.commit()
         
-        # filter_from_webodm(project_id, self.task_id[index], color)
-        # create_components(project_id, self.task_id[index], self.SQLid[index], color)
+        filter_from_webodm(project_id, self.task_id[index], color)
+        create_components(project_id, self.task_id[index], self.SQLid[index], color)
         
         return None
 
@@ -167,10 +171,10 @@ class WebODM_API:
         }
         project_id = requests.post(projecturl, headers=self.headers, data=data).json()['id']
 
-        self.init_nodeODM(project_id, files, TypeColor.ORIGINAL.value, 1)
-        self.init_nodeODM(project_id, files, TypeColor.GREEN_CRACKS.value, 6)
-        self.init_nodeODM(project_id, files, TypeColor.RED_STAINS.value, 3)
-        self.init_nodeODM(project_id, files, TypeColor.BLUE_SPALLS.value, 4)
+        # self.init_nodeODM(project_id, files, TypeColor.ORIGINAL.value, 1)
+        # self.init_nodeODM(project_id, files, TypeColor.GREEN_CRACKS.value, 6)
+        # self.init_nodeODM(project_id, files, TypeColor.RED_STAINS.value, 3)
+        self.init_nodeODM(project_id, files, TypeColor.BLUE_SPALLS.value, 1)
         
         # if (self.SQLid == -1):
         #     self.cursor.close()
@@ -178,9 +182,12 @@ class WebODM_API:
         #     shutil.rmtree(self.temp_dir)
         #     return "database error"
         
-        self.post_task(project_id, TypeColor.GREEN_CRACKS.value)
-        self.post_task(project_id, TypeColor.RED_STAINS.value)
-        self.post_task(project_id, TypeColor.BLUE_SPALLS.value)
+        # self.post_task(project_id, TypeColor.GREEN_CRACKS.value)
+        # self.post_task(project_id, TypeColor.RED_STAINS.value)
+        result = self.post_task(project_id, TypeColor.BLUE_SPALLS.value)
+        
+        if not (result == None):
+            return "post_task error"
         
         self.cursor.close()
         self.mydb.close()
@@ -197,6 +204,7 @@ class WebODM_API:
         response = requests.post(url, data=data)
         
         self.headers = {'Authorization': 'JWT {}'.format(response.json()['token'])}
+        return self.headers
 
     def getFilePath(self, project_id, task_id, request_type):  
         try:
@@ -233,12 +241,12 @@ class WebODM_API:
         pc_str = self.getFilePath(project_id, task_id, "georeferenced_model.laz")  
         
         result = tm_str + " " + pc_str
-        print(tm_str + " " + pc_str)
+        print(tm_str + " " + pc_str, flush=True)
         
         return result
 
 # API endpoint
-@app.route('/task', methods=['POST'])
+@laimatt_app.route('/task', methods=['POST'])
 def task_api():
     if 'file' not in request.files:
         return jsonify({'error': 'No file part in the request'}), 400
@@ -255,26 +263,26 @@ def task_api():
     return api.create_task(file)
 
 # API endpoint
-@app.route('/test', methods=['POST'])
+@laimatt_app.route('/test', methods=['POST'])
 def test_api():
     api.authenticate()
     
-    project_id = 161
-    task_id = "a4a3d759-3e67-4d08-bb6a-21c3136965c1"
+    project_id = 176
+    task_id = "84be4f1d-ab95-4494-a581-4420c7c06680"
     uid = 23
     color = TypeColor.BLUE_SPALLS.value
     
-    # filter_from_webodm(project_id, task_id, color)
+    filter_from_webodm(project_id, task_id, color)
     create_components(project_id, task_id, uid, color)
         
     return "clustering done\n"
 
-@app.route('/download/<project_id>/<task_id>/<filename>', methods=['GET'])
+@laimatt_app.route('/download/<project_id>/<task_id>/<filename>', methods=['GET'])
 def download(project_id, task_id, filename):
     api.authenticate()
     
     # Assuming files are stored in a directory named 'files' under the app root directory
-    task = os.path.join(app.root_path, 'tasks/task_{}_{}'.format(project_id, task_id))
+    task = os.path.join(laimatt_app.root_path, 'tasks/task_{}_{}'.format(project_id, task_id))
     uploads = os.path.join(task, 'tests/test_10_0.2_10000/component_las_10_0.2_10000')
 
     if not (os.path.isfile(os.path.join(uploads, filename))):
@@ -282,7 +290,7 @@ def download(project_id, task_id, filename):
     # Use send_file function to send the file
     return send_file(os.path.join(uploads, filename), as_attachment=True)
 
-@app.route('/downloadwebodm/<project_id>/<task_id>/<filename>', methods=['GET'])
+@laimatt_app.route('/downloadwebodm/<project_id>/<task_id>/<filename>', methods=['GET'])
 def downloadwebodm(project_id, task_id, filename):
     api.authenticate()    
     try:
@@ -291,6 +299,7 @@ def downloadwebodm(project_id, task_id, filename):
         return repr(e)
         
     # Send a GET request to the URL
+    print(url, flush = True)
     response = requests.get(url, headers=api.authenticate())
 
     if response.status_code == 200:
@@ -304,9 +313,9 @@ def downloadwebodm(project_id, task_id, filename):
         return Response('Failed to fetch file from URL', status=response.status_code)
 
 api = WebODM_API()
-if __name__ == '__main__':
-    # run_gunicorn()
+# if __name__ == '__main__':
+#     # run_gunicorn()
         
-    # run as a flask app instead
-    app.run(host='0.0.0.0', port=2000, debug=True)
-        
+#     # run as a flask app instead
+#     # laimatt_app.run(host='0.0.0.0', port=2000, debug=True)
+#     laimatt_app.run()

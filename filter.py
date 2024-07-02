@@ -61,7 +61,7 @@ def filter_points_laspy(file_path, output_file, color):
         
         out_writer.write_points(out_file)
 
-    print(f"Filtered LAS file saved to {output_file}")
+    print(f"Filtered LAS file saved to {output_file}", flush=True)
 
 def download_file(url, save_path):
     token = authenticate()
@@ -74,13 +74,14 @@ def download_file(url, save_path):
         # Open a file in binary write mode ('wb') and write the content of the response
         with open(save_path, 'wb') as f:
             f.write(response.content)
-        print(f"File downloaded successfully and saved to: {save_path}")
+        print(f"File downloaded successfully and saved to: {save_path}", flush=True)
     else:
-        print(f"Failed to download file. Status code: {response.status_code}")
+        print(f"Failed to download file. Status code: {response.status_code}", flush=True)
     
 def lazTolas(laz, las):
+    pdal = "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/pdal"
     command = [
-            "pdal",
+        pdal,
             "translate",
             laz,
             las
@@ -96,7 +97,7 @@ def authenticate():
     response = requests.post(url, data=data)
     return response.json()['token']
 
-def filter_from_webodm(project_id, task_id, color):
+def filter_from_webodm(project_id, task_id, color): # entire pipeline
     # webodm_path = '/var/lib/docker/volumes/webodm_appmedia/_data/project/{}/task/{}/assets/'.format(project_id, task_id) + 'ccny_postprocessing' 
     # if not os.path.exists(webodm_path):
     #     # Create the directory
@@ -105,7 +106,7 @@ def filter_from_webodm(project_id, task_id, color):
     task_path = 'tasks/task_{}_{}'.format(project_id, task_id) 
     
     if os.path.exists(task_path):
-        print(task_path + " already exists, remaking")
+        print(task_path + " already exists, remaking", flush=True)
         shutil.rmtree(task_path)
     os.makedirs(task_path)
 
