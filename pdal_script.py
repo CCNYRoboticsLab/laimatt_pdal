@@ -108,9 +108,10 @@ def populate_db(test_dir, test_index, uid, project_id, task_id, color):
     cursor.execute("USE sample")
     
     filepaths = sorted(glob.iglob(test_dir + '/component_las_' + test_index + '/*'))
-    next(iter(filepaths))
+    # next(iter(sorted(glob.iglob(test_dir + '/component_las_' + test_index + '/*'))))
+    # filepaths = next(iter(sorted(glob.iglob(test_dir + '/component_las_' + test_index + '/*'))))
     
-    for filepath in filepaths:
+    for filepath in filepaths[1:]:
         b = bounding_box_info(filepath)
         link = "https://laimatt.boshang.online/download/" + str(project_id) + "/" + task_id + "/" + os.path.basename(filepath)
         

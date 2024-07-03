@@ -231,19 +231,6 @@ class WebODM_API:
                 raise GetFileException("task found, but all.zip file not found")
         else:
             raise GetFileException("invalid request type")
-            
-    def test_db(self):
-        project_id = 123
-        task_id = "1423cc6e-0218-495a-9818-e10114997b9e"
-        
-        tm_str = self.getFilePath(project_id, task_id, "textured_model.glb")  
-        all_str = self.getFilePath(project_id, task_id, "all.zip")  
-        pc_str = self.getFilePath(project_id, task_id, "georeferenced_model.laz")  
-        
-        result = tm_str + " " + pc_str
-        print(tm_str + " " + pc_str, flush=True)
-        
-        return result
 
 # API endpoint
 @laimatt_app.route('/task', methods=['POST'])
@@ -267,8 +254,8 @@ def task_api():
 def test_api():
     api.authenticate()
     
-    project_id = 176
-    task_id = "84be4f1d-ab95-4494-a581-4420c7c06680"
+    project_id = 181
+    task_id = "57e7cde0-c2d4-48d0-918b-f71b09702faf"
     uid = 23
     color = TypeColor.BLUE_SPALLS.value
     
