@@ -82,10 +82,10 @@ def lazTolas(laz, las):
     pdal = "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/pdal"
     command = [
         pdal,
-            "translate",
-            laz,
-            las
-        ]
+        "translate",
+        laz,
+        las
+    ]
     result = subprocess.run(command, capture_output=True, text=True, check=True)
     
 def authenticate():
