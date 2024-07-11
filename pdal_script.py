@@ -16,8 +16,7 @@ def csvToLas(test_dir, test_index, length):
     os.makedirs(path)
         
     for x in range(length):
-        # pdal = "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/pdal"
-        pdal = "pdal"
+        pdal = "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/pdal"
         command = [
             pdal,
             "translate",
@@ -27,8 +26,7 @@ def csvToLas(test_dir, test_index, length):
         result = subprocess.run(command, capture_output=True, text=True, check=True)
     
 def lasToCsv(test_dir, min_p, tolerance, max_p, file_name):
-    # pdal = "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/pdal"
-    pdal = "pdal"
+    pdal = "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/pdal"
     command = [
         pdal,
         "translate",
@@ -149,7 +147,8 @@ def create_components(project_id, task_id, uid, color):
     if not (os.path.exists(test_path)):
         os.makedirs(os.path.join(test_path))
 
-    test_dir = os.path.join(test_path, ("test_" + str(min_p) + "_" + str(tolerance) + "_" + str(max_p)))
+    test_dir = os.path.join(test_path, ('{}_test_{}_{}_{}').format(getName(TypeColor, color), min_p, tolerance, max_p))
+    # test_dir = os.path.join(test_path, ("test_" + str(min_p) + "_" + str(tolerance) + "_" + str(max_p)))
     test_index = str(min_p) + "_" + str(tolerance) + "_" + str(max_p)
     if os.path.exists(test_dir):
         print(test_dir + " already exists, remaking", flush=True)
@@ -186,4 +185,4 @@ def download(project_id, task_id, filename):
     return send_file(os.path.join(uploads, filename), as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=2000, debug=True)
+    app.run(host='0.0.0.0', port=2001, debug=True)
