@@ -300,9 +300,9 @@ def downloadwebodm(project_id, task_id, filename):
         return Response('Failed to fetch file from URL', status=response.status_code)
 
 api = WebODM_API()
-# if __name__ == '__main__':
-#     # run_gunicorn()
+if __name__ == '__main__':
+    # run_gunicorn()
         
-#     # run as a flask app instead
-#     # laimatt_app.run(host='0.0.0.0', port=2000, debug=True)
-#     laimatt_app.run()
+    # run as a flask app instead
+    # laimatt_app.run(host='0.0.0.0', port=2000, debug=True)
+    laimatt_app.run()

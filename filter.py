@@ -79,7 +79,8 @@ def download_file(url, save_path):
         print(f"Failed to download file. Status code: {response.status_code}", flush=True)
     
 def lazTolas(laz, las):
-    pdal = "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/pdal"
+    # pdal = "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/pdal"
+    pdal = "pdal"
     command = [
         pdal,
         "translate",
