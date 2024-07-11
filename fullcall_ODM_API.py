@@ -171,10 +171,10 @@ class WebODM_API:
         }
         project_id = requests.post(projecturl, headers=self.headers, data=data).json()['id']
 
-        # self.init_nodeODM(project_id, files, TypeColor.ORIGINAL.value, 1)
-        # self.init_nodeODM(project_id, files, TypeColor.GREEN_CRACKS.value, 6)
-        # self.init_nodeODM(project_id, files, TypeColor.RED_STAINS.value, 3)
-        self.init_nodeODM(project_id, files, TypeColor.BLUE_SPALLS.value, 1)
+        self.init_nodeODM(project_id, files, TypeColor.ORIGINAL.value, 1)
+        # self.init_nodeODM(project_id, files, TypeColor.GREEN_CRACKS.value, 15)
+        # self.init_nodeODM(project_id, files, TypeColor.RED_STAINS.value, 14)
+        # self.init_nodeODM(project_id, files, TypeColor.BLUE_SPALLS.value, 16)
         
         # if (self.SQLid == -1):
         #     self.cursor.close()
@@ -184,10 +184,10 @@ class WebODM_API:
         
         # self.post_task(project_id, TypeColor.GREEN_CRACKS.value)
         # self.post_task(project_id, TypeColor.RED_STAINS.value)
-        result = self.post_task(project_id, TypeColor.BLUE_SPALLS.value)
+        # result = self.post_task(project_id, TypeColor.BLUE_SPALLS.value)
         
-        if not (result == None):
-            return "post_task error"
+        # if not (result == None):
+        #     return "post_task error"
         
         self.cursor.close()
         self.mydb.close()
@@ -259,8 +259,9 @@ def test_api():
     uid = 23
     color = TypeColor.BLUE_SPALLS.value
     
-    filter_from_webodm(project_id, task_id, color)
-    create_components(project_id, task_id, uid, color)
+    print("test)")
+    # filter_from_webodm(project_id, task_id, color)
+    # create_components(project_id, task_id, uid, color)
         
     return "clustering done\n"
 
@@ -300,9 +301,9 @@ def downloadwebodm(project_id, task_id, filename):
         return Response('Failed to fetch file from URL', status=response.status_code)
 
 api = WebODM_API()
-# if __name__ == '__main__':
-#     # run_gunicorn()
+if __name__ == '__main__':
+    # run_gunicorn()
         
-#     # run as a flask app instead
-#     # laimatt_app.run(host='0.0.0.0', port=2000, debug=True)
-#     laimatt_app.run()
+    # run as a flask app instead
+    laimatt_app.run(host='0.0.0.0', port=2001, debug=True)
+    # laimatt_app.run()
