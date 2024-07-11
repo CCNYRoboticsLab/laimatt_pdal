@@ -1,3 +1,8 @@
 echo "I am running on a container"
-sleep 10000
-python3 /app/fullcall_ODM_API_server.py
+echo "attempting conda activate"
+python fullcall_ODM_API.py
+sleep 100000
+# conda init
+# ~/.bashrc
+# conda activate .conda
+python fullcall_ODM_API.py
