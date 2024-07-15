@@ -1,1 +1,4 @@
-gunicorn_logs/
+**/__pycache__
+**/.git
+**/gunicorn_logs
+**/Dockerfile

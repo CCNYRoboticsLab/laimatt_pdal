@@ -90,7 +90,7 @@ def lazTolas(laz, las):
     result = subprocess.run(command, capture_output=True, text=True, check=True)
     
 def authenticate():
-    url = "http://localhost:8000/api/token-auth/"
+    url = "https://webodm.boshang.online/api/token-auth/"
     data = {
         "username": "authentication",
         "password": "authkeyword"

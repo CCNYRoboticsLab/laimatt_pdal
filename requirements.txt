@@ -3,4 +3,3 @@ laspy
 mysql-connector-python
 requests
 flask
-pdal

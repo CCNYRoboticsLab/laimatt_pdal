@@ -16,7 +16,8 @@ def csvToLas(test_dir, test_index, length):
     os.makedirs(path)
         
     for x in range(length):
-        pdal = "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/pdal"
+        # pdal = "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/pdal"
+        pdal = "pdal"
         command = [
             pdal,
             "translate",
@@ -26,7 +27,8 @@ def csvToLas(test_dir, test_index, length):
         result = subprocess.run(command, capture_output=True, text=True, check=True)
     
 def lasToCsv(test_dir, min_p, tolerance, max_p, file_name):
-    pdal = "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/pdal"
+    # pdal = "/home/roboticslab/Developer/laimatt/laimatt_pdal/.conda/bin/pdal"
+    pdal = "pdal"
     command = [
         pdal,
         "translate",
@@ -101,8 +103,8 @@ def populate_db(test_dir, test_index, uid, project_id, task_id, color):
         host="localhost",
         user="root",  # Your MySQL username
         password="",  # Your MySQL password (if any)
-        port=3308,  # Your MySQL port
-        unix_socket="/opt/lampp/var/mysql/mysql.sock"
+        port=80,  # Your MySQL port
+        unix_socket="/app/mysql.sock"
     )
     cursor = mydb.cursor()
     cursor.execute("USE sample")
@@ -115,7 +117,7 @@ def populate_db(test_dir, test_index, uid, project_id, task_id, color):
         b = bounding_box_info(filepath)
         link = "https://laimatt.boshang.online/download/" + str(project_id) + "/" + task_id + "/" + os.path.basename(filepath)
         
-        query = "INSERT INTO patch_crack (center_lat, center_long, center_alt, box_length, box_width, box_height, type, file_path_las, whole_data_id) " + \
+        query = "INSERT INTO patch_crack (center_lat, center_long, center_alt, box_length, box_width, box_height, type, las_link, whole_data_id) " + \
             "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', %s, %s, %s)"
         data = (b[0], b[1], b[2], b[3], b[4], b[5], color, link, uid)
         # print(query, data)

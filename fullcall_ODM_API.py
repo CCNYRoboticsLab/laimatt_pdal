@@ -32,7 +32,7 @@ def getName(enum_class, value):
     return None  
 
 def run_gunicorn():
-    bind_address = '0.0.0.0:2000'
+    bind_address = '0.0.0.0:92384'
     workers = 4
     module_name = 'fullcall_ODM_API_server'
     app_name = 'laimatt_app'
@@ -54,6 +54,7 @@ laimatt_app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024 * 1024 # 4 gb limit
 class WebODM_API:
 
     def __init__(self):
+        print("test")
         self.task_id = ["", "", "", ""]
         self.SQLid = [-1, -1, -1, -1]
         try:
@@ -61,8 +62,8 @@ class WebODM_API:
             host="localhost",
             user="root",  # Your MySQL username
             password="",  # Your MySQL password (if any)
-            port=3308,  # Your MySQL port
-            unix_socket="/opt/lampp/var/mysql/mysql.sock"
+            port=80,  # Your MySQL port
+            unix_socket="/app/mysql.sock"
             )
             self.cursor = self.mydb.cursor()
             self.cursor.execute("USE sample")
@@ -103,7 +104,7 @@ class WebODM_API:
     def init_nodeODM(self, project_id, files, color, node):
         index = color - 1
         
-        taskurl = "http://localhost:8000/api/projects/" + str(project_id) + "/tasks/"
+        taskurl = "https://webodm.boshang.online/api/projects/" + str(project_id) + "/tasks/"
         data  = {
             "name": getName(TypeColor, color),
             "processing_node": node
@@ -119,7 +120,7 @@ class WebODM_API:
         index = color - 1
         
         while True:
-            res = requests.get('http://localhost:8000/api/projects/{}/tasks/{}/'.format(project_id, self.task_id[index]), 
+            res = requests.get('https://webodm.boshang.online/api/projects/{}/tasks/{}/'.format(project_id, self.task_id[index]), 
                         headers=self.headers).json()
             try:
                 if res['status'] == 40:
@@ -141,7 +142,7 @@ class WebODM_API:
                 return getName(TypeColor, color) + " Task failed: {}\n"
                 
         
-        update_query = "UPDATE whole_data SET status = 4, project_id = %s, task_id = %s, whole_las_path = %s, all_files = %s, whole_glb_path = %s WHERE uid = %s"
+        update_query = "UPDATE whole_data SET status = 4, project_id = %s, task_id = %s, las_file = %s, all_file = %s, glb_file = %s WHERE uid = %s"
         tm_str = 'https://laimatt.boshang.online/downloadwebodm/{}/{}/textured_model.glb'.format(project_id, self.task_id[index])
         all_str = 'https://laimatt.boshang.online/downloadwebodm/{}/{}/all.zip'.format(project_id, self.task_id[index])
         pc_str = 'https://laimatt.boshang.online/downloadwebodm/{}/{}/georeferenced_model.laz'.format(project_id, self.task_id[index])
@@ -165,16 +166,16 @@ class WebODM_API:
             return "not enough images, images found: " + str(files) + "\n"
         
 
-        projecturl = "http://localhost:8000/api/projects/"
+        projecturl = "https://webodm.boshang.online/api/projects/"
         data  = {
             "name": "API_Call_threecolor"
         }
         project_id = requests.post(projecturl, headers=self.headers, data=data).json()['id']
 
-        self.init_nodeODM(project_id, files, TypeColor.ORIGINAL.value, 1)
+        # self.init_nodeODM(project_id, files, TypeColor.ORIGINAL.value, 1)
         # self.init_nodeODM(project_id, files, TypeColor.GREEN_CRACKS.value, 15)
         # self.init_nodeODM(project_id, files, TypeColor.RED_STAINS.value, 14)
-        # self.init_nodeODM(project_id, files, TypeColor.BLUE_SPALLS.value, 16)
+        self.init_nodeODM(project_id, files, TypeColor.BLUE_SPALLS.value, 1)
         
         # if (self.SQLid == -1):
         #     self.cursor.close()
@@ -184,7 +185,7 @@ class WebODM_API:
         
         # self.post_task(project_id, TypeColor.GREEN_CRACKS.value)
         # self.post_task(project_id, TypeColor.RED_STAINS.value)
-        # result = self.post_task(project_id, TypeColor.BLUE_SPALLS.value)
+        result = self.post_task(project_id, TypeColor.BLUE_SPALLS.value)
         
         # if not (result == None):
         #     return "post_task error"
@@ -196,7 +197,7 @@ class WebODM_API:
             
 
     def authenticate(self):
-        url = "http://localhost:8000/api/token-auth/"
+        url = "https://webodm.boshang.online/api/token-auth/"
         data = {
             "username": "authentication",
             "password": "authkeyword"
@@ -208,7 +209,7 @@ class WebODM_API:
 
     def getFilePath(self, project_id, task_id, request_type):  
         try:
-            task = requests.get('http://localhost:8000/api/projects/{}/tasks/{}'.format(project_id, task_id), 
+            task = requests.get('https://webodm.boshang.online/api/projects/{}/tasks/{}'.format(project_id, task_id), 
                     headers=self.headers).json()        
             available_assets = task['available_assets']
         except:
@@ -299,11 +300,16 @@ def downloadwebodm(project_id, task_id, filename):
         return send_file(file_stream, as_attachment=True, download_name=filename)
     else:
         return Response('Failed to fetch file from URL', status=response.status_code)
+    
+@laimatt_app.route('/')
+def hello_geek():
+    return '<h1>Hello from Flask & Docker</h2>'
 
 api = WebODM_API()
+print("test")
 if __name__ == '__main__':
     # run_gunicorn()
         
     # run as a flask app instead
-    laimatt_app.run(host='0.0.0.0', port=2001, debug=True)
+    laimatt_app.run(host='0.0.0.0', port=33333, debug=True)
     # laimatt_app.run()

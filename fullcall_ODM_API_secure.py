@@ -62,7 +62,7 @@ class WebODM_API:
             user="root",  # Your MySQL username
             password="",  # Your MySQL password (if any)
             port=3308,  # Your MySQL port
-            unix_socket="/opt/lampp/var/mysql/mysql.sock"
+            unix_socket="/app/mysql.sock"
             )
             self.cursor = self.mydb.cursor()
             self.cursor.execute("USE sample")
