@@ -31,22 +31,22 @@ def getName(enum_class, value):
             return enum_member.name
     return None  
 
-def run_gunicorn():
-    bind_address = '0.0.0.0:92384'
-    workers = 4
-    module_name = 'fullcall_ODM_API_server'
-    app_name = 'laimatt_app'
+# def run_gunicorn():
+#     bind_address = '0.0.0.0:57902'
+#     workers = 4
+#     module_name = 'fullcall_ODM_API_server'
+#     app_name = 'laimatt_app'
 
-    # Command to run Gunicorn
-    cmd = [
-        'gunicorn',
-        '-w', str(workers),
-        '-b', bind_address,
-        f'{module_name}:{app_name}'
-    ]
+#     # Command to run Gunicorn
+#     cmd = [
+#         'gunicorn',
+#         '-w', str(workers),
+#         '-b', bind_address,
+#         f'{module_name}:{app_name}'
+#     ]
 
-    # Run the command
-    subprocess.run(cmd)
+#     # Run the command
+#     subprocess.run(cmd)
 
 laimatt_app = Flask(__name__)
 laimatt_app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024 * 1024 # 4 gb limit
@@ -54,7 +54,6 @@ laimatt_app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024 * 1024 # 4 gb limit
 class WebODM_API:
 
     def __init__(self):
-        print("test")
         self.task_id = ["", "", "", ""]
         self.SQLid = [-1, -1, -1, -1]
         try:
@@ -306,10 +305,9 @@ def hello_geek():
     return '<h1>Hello from Flask & Docker</h2>'
 
 api = WebODM_API()
-print("test")
-if __name__ == '__main__':
-    # run_gunicorn()
+# if __name__ == '__main__':
+#     # run_gunicorn()
         
-    # run as a flask app instead
-    laimatt_app.run(host='0.0.0.0', port=33333, debug=True)
-    # laimatt_app.run()
+#     # run as a flask app instead
+#     laimatt_app.run(host='0.0.0.0', port=57902, debug=True)
+#     # laimatt_app.run()

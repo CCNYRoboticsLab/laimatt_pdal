@@ -1,11 +1,9 @@
-bind = '0.0.0.0:2000'
+bind = '0.0.0.0:57902'
 workers = 4
 worker_memory_limit = 20 * 1024 * 1024 # 20mb
 timeout = 86400
 graceful_timeout = 86400 # 24 hours
-errorlog = '/home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-error.log'
-accesslog = '/home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-access.log'
+errorlog = '/app/gunicorn_logs/gunicorn-error.log'
+accesslog = '/app/gunicorn_logs/gunicorn-access.log'
 loglevel = 'debug'
 capture_output = True
-user = 'roboticslab'
-group = 'roboticslab'

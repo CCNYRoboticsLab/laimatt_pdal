@@ -23,19 +23,26 @@ WORKDIR /app
 COPY . /app
 
 # Install dependencies
-RUN apt-get update 
-    # && conda activate app/pdal 
-    # && pip install pandas laspy mysql-connector-python requests flask pdal    
+RUN apt-get update   
 
-RUN echo "source activate pdal" > ~/.bashrc
-ENV PATH /opt/conda/envs/pdal:$PATH
+RUN chmod +x run.sh
 
-RUN conda install pandas laspy mysql-connector-python requests flask  
+RUN conda env create -f environment.yml
 
-EXPOSE 33333
+RUN echo "source activate pdal_env" > ~/.bashrc
+ENV PATH=/opt/conda/envs/pdal_env/bin:$PATH
 
-ENV NAME laimatt
+# RUN echo "source activate pdal" > ~/.bashrc
+# ENV PATH /opt/conda/envs/pdal:$PATH
+
+# RUN conda install pandas laspy mysql-connector-python requests flask  
+
+EXPOSE 57902
+
+ENV NAME=laimatt
+
+# ENTRYPOINT ["./run.sh"]
+CMD ["bash", "run.sh"]
 
 # Run your application
-# CMD ["conda", "run", "-n", "pdal", "python", "fullcall_ODM_API.py"]
-CMD ["conda", "run", "-n", "pdal", "python", "-m" , "flask", "--app", "fullcall_ODM_API", "run", "--host=0.0.0.0"]
+# CMD ["conda", "run", "-n", "pdal", "python", "-m" , "flask", "--app", "fullcall_ODM_API", "run", "--host=0.0.0.0"]
