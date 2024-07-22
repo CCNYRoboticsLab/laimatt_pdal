@@ -8,10 +8,12 @@ import requests
 import glob
 import time
 import os
+from werkzeug.utils import secure_filename
 import zipfile
 import tempfile
 import shutil
-import subprocess
+import traceback
+import sys
 
 class GetFileException(Exception):
     pass
@@ -56,6 +58,7 @@ class WebODM_API:
     def __init__(self):
         self.task_id = ["", "", "", ""]
         self.SQLid = [-1, -1, -1, -1]
+        self.temp_dir = None  # Initialize temp_dir as None
         try:
             self.mydb = mysql.connector.connect(
             host="localhost",
@@ -67,24 +70,32 @@ class WebODM_API:
             self.cursor = self.mydb.cursor()
             self.cursor.execute("USE sample")
         except:
+            self.cleanup()
             raise DatabaseException("database exception error")
+
+    def __del__(self):
+        self.cleanup()
 
     SUCCESS = 0
     NO_IMAGES = -1
-        
-    def extract_files(self, file):
+
+    def cleanup(self):
+        if hasattr(self, 'cursor') and self.cursor:
+            self.cursor.close()
+        if hasattr(self, 'mydb') and self.mydb:
+            self.mydb.close()
+        if self.temp_dir and os.path.exists(self.temp_dir):
+            shutil.rmtree(self.temp_dir)
+        self.temp_dir = None
+
+    def extract_files(self, zip_filepath):
         try:
-            self.temp_dir = tempfile.mkdtemp()
-            zip_filepath = os.path.join(self.temp_dir, file.filename)
-            file.save(zip_filepath)
             # Extract the contents of the zip file
             extract_dir = os.path.join(self.temp_dir, 'extracted_folder')
             with zipfile.ZipFile(zip_filepath, 'r') as zip_ref:
                 zip_ref.extractall(extract_dir)
-        except:
-            self.cursor.close()
-            self.mydb.close()
-            shutil.rmtree(self.temp_dir)
+        except Exception as e:
+            print(f"Error extracting zip file: {str(e)}", flush=True)
             return None
             
         # Now you can process the contents of the extracted folder
@@ -92,25 +103,35 @@ class WebODM_API:
         extracted_files = os.listdir(extract_dir)
         print(f"Extracted files: {extracted_files}", flush=True)
                 
-        images = glob.glob(extract_dir + "/*.JPG") + glob.glob(extract_dir + "/*.jpg") + glob.glob(extract_dir + "/*.png") + glob.glob(extract_dir + "/*.PNG")
+        images = glob.glob(os.path.join(extract_dir, "*.JPG")) + \
+                 glob.glob(os.path.join(extract_dir, "*.jpg")) + \
+                 glob.glob(os.path.join(extract_dir, "*.png")) + \
+                 glob.glob(os.path.join(extract_dir, "*.PNG"))
                 
         files = []
         for image_path in images:
-            files.append(('images', (image_path, open(image_path, 'rb'), 'image/png')))
+            with open(image_path, 'rb') as img_file:
+                files.append(('images', (os.path.basename(image_path), img_file.read(), 'image/png')))
         
         return files
     
     def init_nodeODM(self, project_id, files, color, node):
         index = color - 1
         
-        taskurl = "https://webodm.boshang.online/api/projects/" + str(project_id) + "/tasks/"
-        data  = {
+        taskurl = f"https://webodm.boshang.online/api/projects/{project_id}/tasks/"
+        data = {
             "name": getName(TypeColor, color),
             "processing_node": node
         }
-        self.task_id[index] = requests.post(taskurl, headers = self.headers, files=files, data = data).json()['id']
-        
-        print("INSERT INTO whole_data (status) VALUES (3)", flush=True)
+        try:
+            response = requests.post(taskurl, headers=self.headers, files=files, data=data)
+            response.raise_for_status()  # Raises an HTTPError for bad responses
+            self.task_id[index] = response.json()['id']
+        except requests.exceptions.RequestException as e:
+            print(f"Error in init_nodeODM: {str(e)}", flush=True)
+            raise
+
+        print(f"INSERT INTO whole_data (status) VALUES (3) for {getName(TypeColor, color)}", flush=True)
         self.cursor.execute("INSERT INTO whole_data (status) VALUES (3)")
         self.mydb.commit()
         self.SQLid[index] = self.cursor.lastrowid
@@ -119,32 +140,31 @@ class WebODM_API:
         index = color - 1
         
         while True:
-            res = requests.get('https://webodm.boshang.online/api/projects/{}/tasks/{}/'.format(project_id, self.task_id[index]), 
+            res = requests.get(f'https://webodm.boshang.online/api/projects/{project_id}/tasks/{self.task_id[index]}/', 
                         headers=self.headers).json()
             try:
                 if res['status'] == 40:
-                    print("Task has completed!", flush=True)
+                    print(f"Task for {getName(TypeColor, color)} has completed!", flush=True)
                     break
                 elif res['status'] == 30:
-                    print(getName(TypeColor, color) + " Task failed: {}\n".format(res), flush=True)
-                    self.cursor.execute("UPDATE whole_data SET status = 2 WHERE uid = " + str(self.SQLid[index]))
+                    print(f"{getName(TypeColor, color)} Task failed: {res}", flush=True)
+                    self.cursor.execute(f"UPDATE whole_data SET status = 2 WHERE uid = {self.SQLid[index]}")
                     self.mydb.commit()
-                    return getName(TypeColor, color) + " Task failed: {}\n".format(res)
+                    return f"{getName(TypeColor, color)} Task failed: {res}"
                 else:
-                    print("Currently processing: " + getName(TypeColor, color) + ", hold on...", flush=True)
+                    print(f"Currently processing: {getName(TypeColor, color)}, hold on...", flush=True)
                     time.sleep(30)
             except Exception as error:
-                print(getName(TypeColor, color) + " Task failed: {}\n".format(res), flush=True)
-                self.cursor.execute("UPDATE whole_data SET status = 2 WHERE uid = " + str(self.SQLid[index]))
+                print(f"{getName(TypeColor, color)} Task failed: {res}", flush=True)
+                self.cursor.execute(f"UPDATE whole_data SET status = 2 WHERE uid = {self.SQLid[index]}")
                 self.mydb.commit()
                 print(error, flush=True)
-                return getName(TypeColor, color) + " Task failed: {}\n"
-                
+                return f"{getName(TypeColor, color)} Task failed: {res}"
         
         update_query = "UPDATE whole_data SET status = 4, project_id = %s, task_id = %s, las_file = %s, all_file = %s, glb_file = %s WHERE uid = %s"
-        tm_str = 'https://laimatt.boshang.online/downloadwebodm/{}/{}/textured_model.glb'.format(project_id, self.task_id[index])
-        all_str = 'https://laimatt.boshang.online/downloadwebodm/{}/{}/all.zip'.format(project_id, self.task_id[index])
-        pc_str = 'https://laimatt.boshang.online/downloadwebodm/{}/{}/georeferenced_model.laz'.format(project_id, self.task_id[index])
+        tm_str = f'https://laimatt.boshang.online/downloadwebodm/{project_id}/{self.task_id[index]}/textured_model.glb'
+        all_str = f'https://laimatt.boshang.online/downloadwebodm/{project_id}/{self.task_id[index]}/all.zip'
+        pc_str = f'https://laimatt.boshang.online/downloadwebodm/{project_id}/{self.task_id[index]}/georeferenced_model.laz'
         update_data = (project_id, self.task_id[index], pc_str, all_str, tm_str, self.SQLid[index])
         self.cursor.execute(update_query, update_data)
         self.mydb.commit()
@@ -155,45 +175,46 @@ class WebODM_API:
         return None
 
     def create_task(self, file):
-        # extract files into a list
-        files = self.extract_files(file)
-        if files == None: return "Bad input file\n"
-        elif len(files) < 2:
-            self.cursor.close()
-            self.mydb.close()
-            shutil.rmtree(self.temp_dir)
-            return "not enough images, images found: " + str(files) + "\n"
-        
+        try:
+            self.temp_dir = tempfile.mkdtemp()  # Create a temporary directory
+            # Save the uploaded file to a temporary location
+            filename = secure_filename(file.filename)
+            temp_path = os.path.join(self.temp_dir, filename)
+            file.save(temp_path)
 
-        projecturl = "https://webodm.boshang.online/api/projects/"
-        data  = {
-            "name": "API_Call_threecolor"
-        }
-        project_id = requests.post(projecturl, headers=self.headers, data=data).json()['id']
+            # Extract files into a list
+            files = self.extract_files(temp_path)
+            if files is None:
+                return "Bad input file\n"
+            elif len(files) < 2:
+                return f"Not enough images, images found: {len(files)}\n"
 
-        # self.init_nodeODM(project_id, files, TypeColor.ORIGINAL.value, 1)
-        # self.init_nodeODM(project_id, files, TypeColor.GREEN_CRACKS.value, 15)
-        # self.init_nodeODM(project_id, files, TypeColor.RED_STAINS.value, 14)
-        self.init_nodeODM(project_id, files, TypeColor.BLUE_SPALLS.value, 1)
-        
-        # if (self.SQLid == -1):
-        #     self.cursor.close()
-        #     self.mydb.close()
-        #     shutil.rmtree(self.temp_dir)
-        #     return "database error"
-        
-        # self.post_task(project_id, TypeColor.GREEN_CRACKS.value)
-        # self.post_task(project_id, TypeColor.RED_STAINS.value)
-        result = self.post_task(project_id, TypeColor.BLUE_SPALLS.value)
-        
-        # if not (result == None):
-        #     return "post_task error"
-        
-        self.cursor.close()
-        self.mydb.close()
-        shutil.rmtree(self.temp_dir)
-        return "task complete and clustered\n"
-            
+            projecturl = "https://webodm.boshang.online/api/projects/"
+            data = {
+                "name": "API_Call_threecolor"
+            }
+            project_id = requests.post(projecturl, headers=self.headers, data=data).json()['id']
+
+            tasks = [
+                # (TypeColor.ORIGINAL.value, 1),
+                (TypeColor.GREEN_CRACKS.value, 15),
+                (TypeColor.RED_STAINS.value, 14),
+                (TypeColor.BLUE_SPALLS.value, 16)
+            ]
+
+            for color, node in tasks:
+                self.init_nodeODM(project_id, files, color, node)
+                result = self.post_task(project_id, color)
+                if result is not None:
+                    return f"Error processing task for {getName(TypeColor, color)}: {result}"
+                time.sleep(50)  # Add a short delay between tasks
+
+            return "All tasks completed and clustered\n"
+        except Exception as e:
+            print(f"Error in create_task: {str(e)}", flush=True)
+            raise
+        finally:
+            self.cleanup()
 
     def authenticate(self):
         url = "https://webodm.boshang.online/api/token-auth/"
@@ -235,19 +256,37 @@ class WebODM_API:
 # API endpoint
 @laimatt_app.route('/task', methods=['POST'])
 def task_api():
-    if 'file' not in request.files:
-        return jsonify({'error': 'No file part in the request'}), 400
-    
-    file = request.files['file']
-    if file.filename == '':
-        return jsonify({'error': 'No file selected for uploading'}), 400
-    
-    # folder = unzip_folder(file)
-    
-    # print(jsonify({'message': 'Folder uploaded and extracted successfully'}), 200)
-
-    api.authenticate()
-    return api.create_task(file)
+    try:
+        if 'file' not in request.files:
+            return jsonify({'error': 'No file part in the request'}), 400
+        
+        file = request.files['file']
+        if file.filename == '':
+            return jsonify({'error': 'No file selected for uploading'}), 400
+        
+        api.authenticate()
+        result = api.create_task(file)
+        return result
+    except Exception as e:
+        # Log the full exception traceback
+        print(f"An error occurred: {str(e)}", file=sys.stderr)
+        print(traceback.format_exc(), file=sys.stderr)
+        # You might want to log this to a file as well
+        
+        # Return a more informative error response
+        return jsonify({
+            'error': 'An internal server error occurred',
+            'details': str(e)
+        }), 500
+        
+# Modify the error handler for 500 errors
+@laimatt_app.errorhandler(500)
+def internal_error(error):
+    print(f"500 error occurred: {str(error)}", file=sys.stderr)
+    return jsonify({
+        'error': 'An internal server error occurred',
+        'details': str(error)
+    }), 500
 
 # API endpoint
 @laimatt_app.route('/test', methods=['POST'])
