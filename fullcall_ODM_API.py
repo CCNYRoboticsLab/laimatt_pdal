@@ -22,10 +22,10 @@ class DatabaseException(Exception):
     pass
 
 class TypeColor(Enum):
-    ORIGINAL = 1
-    GREEN_CRACKS = 2
-    RED_STAINS = 3
-    BLUE_SPALLS = 4
+    original = 1
+    green_cracks = 2
+    red_stains = 3
+    blue_spalls = 4
 
 def getName(enum_class, value):
     for enum_member in enum_class:
@@ -57,7 +57,7 @@ class WebODM_API:
 
     def __init__(self):
         self.task_id = ["", "", "", ""]
-        self.SQLid = [-1, -1, -1, -1]
+        self.SQLid = -1
         self.temp_dir = None  # Initialize temp_dir as None
         try:
             self.mydb = mysql.connector.connect(
@@ -130,15 +130,19 @@ class WebODM_API:
         except requests.exceptions.RequestException as e:
             print(f"Error in init_nodeODM: {str(e)}", flush=True)
             raise
-
-        print(f"INSERT INTO whole_data (status) VALUES (3) for {getName(TypeColor, color)}", flush=True)
-        self.cursor.execute("INSERT INTO whole_data (status) VALUES (3)")
-        self.mydb.commit()
-        self.SQLid[index] = self.cursor.lastrowid
+        
+        if node == 1:
+            print(f"INSERT INTO whole_data (status) VALUES (3) for {getName(TypeColor, color)}", flush=True)
+            self.cursor.execute("INSERT INTO whole_data (status) VALUES (3)")
+            self.mydb.commit()
+            self.SQLid = self.cursor.lastrowid
     
     def post_task(self, project_id, color):
         index = color - 1
         
+        self.cursor.execute(f"UPDATE whole_data SET status = {color + 4} WHERE uid = {self.SQLid}")
+        self.mydb.commit()
+                    
         while True:
             res = requests.get(f'https://webodm.boshang.online/api/projects/{project_id}/tasks/{self.task_id[index]}/', 
                         headers=self.headers).json()
@@ -148,7 +152,7 @@ class WebODM_API:
                     break
                 elif res['status'] == 30:
                     print(f"{getName(TypeColor, color)} Task failed: {res}", flush=True)
-                    self.cursor.execute(f"UPDATE whole_data SET status = 2 WHERE uid = {self.SQLid[index]}")
+                    self.cursor.execute(f"UPDATE whole_data SET status = 2 WHERE uid = {self.SQLid}")
                     self.mydb.commit()
                     return f"{getName(TypeColor, color)} Task failed: {res}"
                 else:
@@ -156,21 +160,27 @@ class WebODM_API:
                     time.sleep(30)
             except Exception as error:
                 print(f"{getName(TypeColor, color)} Task failed: {res}", flush=True)
-                self.cursor.execute(f"UPDATE whole_data SET status = 2 WHERE uid = {self.SQLid[index]}")
+                self.cursor.execute(f"UPDATE whole_data SET status = 2 WHERE uid = {self.SQLid}")
                 self.mydb.commit()
                 print(error, flush=True)
                 return f"{getName(TypeColor, color)} Task failed: {res}"
         
-        update_query = "UPDATE whole_data SET status = 4, project_id = %s, task_id = %s, las_file = %s, all_file = %s, glb_file = %s WHERE uid = %s"
+        colorName = getName(TypeColor, color)
+        
+        update_query = "UPDATE whole_data SET project_id = %s, %s = '%s', %s = '%s', %s = '%s', %s = '%s' WHERE uid = %s"
         tm_str = f'https://laimatt.boshang.online/downloadwebodm/{project_id}/{self.task_id[index]}/textured_model.glb'
         all_str = f'https://laimatt.boshang.online/downloadwebodm/{project_id}/{self.task_id[index]}/all.zip'
         pc_str = f'https://laimatt.boshang.online/downloadwebodm/{project_id}/{self.task_id[index]}/georeferenced_model.laz'
-        update_data = (project_id, self.task_id[index], pc_str, all_str, tm_str, self.SQLid[index])
-        self.cursor.execute(update_query, update_data)
+        update_data = (str(project_id), 'task_id_' + colorName, self.task_id[index], 'all_file_' + colorName, pc_str, \
+            'las_file_' + colorName, all_str, 'glb_file_' + colorName, tm_str, str(self.SQLid))
+        toUpdate = update_query % update_data
+        print(toUpdate)
+        self.cursor.execute(toUpdate)
         self.mydb.commit()
         
-        filter_from_webodm(project_id, self.task_id[index], color)
-        create_components(project_id, self.task_id[index], self.SQLid[index], color)
+        if not color == 1:
+            filter_from_webodm(project_id, self.task_id[index], color)
+            create_components(project_id, self.task_id[index], self.SQLid, color)
         
         return None
 
@@ -194,21 +204,33 @@ class WebODM_API:
                 "name": "API_Call_threecolor"
             }
             project_id = requests.post(projecturl, headers=self.headers, data=data).json()['id']
-
+            # self.SQLid = [61, 61, 61, 61]
+            # self.task_id = ["74b51bf5-ba1a-46f4-a377-1d11ec94b3d5", "1b8a7e5e-65b2-4928-8638-cbbe00933776", "7f081d95-e7cc-468b-b17f-e3cf4beac9e0", "4df4bc29-b5a4-4db9-96db-257e530fab96"]
+            # project_id = 219
+            
+            
             tasks = [
-                # (TypeColor.ORIGINAL.value, 1),
-                (TypeColor.GREEN_CRACKS.value, 15),
-                (TypeColor.RED_STAINS.value, 14),
-                (TypeColor.BLUE_SPALLS.value, 16)
+                (TypeColor.original.value, 1),
+                # (TypeColor.green_cracks.value, 15),
+                # (TypeColor.red_stains.value, 14),
+                (TypeColor.blue_spalls.value, 16)
             ]
-
+            
+            task_path = 'tasks/projID_{}'.format(project_id) 
+            if os.path.exists(task_path):
+                print(task_path + " already exists, remaking", flush=True)
+                shutil.rmtree(task_path)
+            os.makedirs(task_path)
+            
             for color, node in tasks:
                 self.init_nodeODM(project_id, files, color, node)
                 result = self.post_task(project_id, color)
                 if result is not None:
                     return f"Error processing task for {getName(TypeColor, color)}: {result}"
-                time.sleep(50)  # Add a short delay between tasks
-
+                time.sleep(30)  # Add a short delay between tasks  
+            
+            self.cursor.execute(f"UPDATE whole_data SET status = 4 WHERE uid = {self.SQLid}")
+            self.mydb.commit()
             return "All tasks completed and clustered\n"
         except Exception as e:
             print(f"Error in create_task: {str(e)}", flush=True)
@@ -296,7 +318,7 @@ def test_api():
     project_id = 181
     task_id = "57e7cde0-c2d4-48d0-918b-f71b09702faf"
     uid = 23
-    color = TypeColor.BLUE_SPALLS.value
+    color = TypeColor.blue_spalls.value
     
     print("test)")
     # filter_from_webodm(project_id, task_id, color)
@@ -304,13 +326,13 @@ def test_api():
         
     return "clustering done\n"
 
-@laimatt_app.route('/download/<project_id>/<task_id>/<filename>', methods=['GET'])
-def download(project_id, task_id, filename):
+@laimatt_app.route('/download/<project_id>/<type>/<filename>', methods=['GET'])
+def download(project_id, type, filename):
     api.authenticate()
     
     # Assuming files are stored in a directory named 'files' under the app root directory
-    task = os.path.join(laimatt_app.root_path, 'tasks/task_{}_{}'.format(project_id, task_id))
-    uploads = os.path.join(task, 'tests/test_10_0.2_10000/component_las_10_0.2_10000')
+    task = os.path.join(laimatt_app.root_path, 'tasks/projID_{}'.format(project_id))
+    uploads = os.path.join(task, 'tests/{}_test_10_0.2_10000/component_las_10_0.2_10000'.format(type))
 
     if not (os.path.isfile(os.path.join(uploads, filename))):
         return "requested file does not exist"

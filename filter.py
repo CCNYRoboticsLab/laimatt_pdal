@@ -7,9 +7,10 @@ import shutil
 import requests
 
 class TypeColor(Enum):
-    GREEN_CRACKS = 2
-    RED_STAINS = 3
-    BLUE_SPALLS = 4
+    original = 1
+    green_cracks = 2
+    red_stains = 3
+    blue_spalls = 4
 
 def getName(enum_class, value):
     for enum_member in enum_class:
@@ -31,12 +32,12 @@ def filter_points_laspy(file_path, output_file, color):
 
     # Define filtered condition: R > 0.8, G < 0.2, B < 0.2 (color values are in range 0 to 1)
     match color:
-        case TypeColor.GREEN_CRACKS: # green
-            filtered_mask = (colors[:, 0] < 0.2) & (colors[:, 1] > 0.8) & (colors[:, 2] < 0.2)
-        case TypeColor.RED_STAINS: # red
-            filtered_mask = (colors[:, 0] > 0.8) & (colors[:, 1] < 0.2) & (colors[:, 2] < 0.2)
+        case TypeColor.green_cracks.value: # green
+            filtered_mask = (colors[:, 0] < 0.3) & (colors[:, 1] > 0.7) & (colors[:, 2] < 0.3)
+        case TypeColor.red_stains.value: # red
+            filtered_mask = (colors[:, 0] > 0.7) & (colors[:, 1] < 0.3) & (colors[:, 2] < 0.3)
         case _: # blue 
-            filtered_mask = (colors[:, 0] < 0.2) & (colors[:, 1] < 0.2) & (colors[:, 2] > 0.8)
+            filtered_mask = (colors[:, 0] < 0.3) & (colors[:, 1] < 0.3) & (colors[:, 2] > 0.7)
 
     # Apply the mask to filter points and colors
     filtered_points = np.vstack((in_file.x, in_file.y, in_file.z)).T[filtered_mask]
@@ -104,12 +105,7 @@ def filter_from_webodm(project_id, task_id, color): # entire pipeline
     #     # Create the directory
     #     os.makedirs(webodm_path)
     
-    task_path = 'tasks/task_{}_{}'.format(project_id, task_id) 
-    
-    if os.path.exists(task_path):
-        print(task_path + " already exists, remaking", flush=True)
-        shutil.rmtree(task_path)
-    os.makedirs(task_path)
+    task_path = 'tasks/projID_{}'.format(project_id) 
 
     input_file = task_path + '/original_model.laz'  # Replace with your input LAS/LAZ file path
     input_las = task_path + '/original_model.las'

@@ -115,7 +115,7 @@ def populate_db(test_dir, test_index, uid, project_id, task_id, color):
     
     for filepath in filepaths[1:]:
         b = bounding_box_info(filepath)
-        link = "https://laimatt.boshang.online/download/" + str(project_id) + "/" + task_id + "/" + os.path.basename(filepath)
+        link = "https://laimatt.boshang.online/download/" + str(project_id) + "/" + getName(TypeColor, color) + "/" + os.path.basename(filepath)
         
         query = "INSERT INTO patch_crack (center_lat, center_long, center_alt, box_length, box_width, box_height, type, las_link, whole_data_id) " + \
             "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', %s, %s, %s)"
@@ -142,7 +142,7 @@ def create_components(project_id, task_id, uid, color):
     tolerance = .2
     max_p = 10000
     
-    folder_path = 'tasks/task_{}_{}/'.format(project_id, task_id)
+    folder_path = 'tasks/projID_{}/'.format(project_id)
     test_path = os.path.join(folder_path, "tests")
     file_name = os.path.join(folder_path, '{}_filtered_model.las'.format(getName(TypeColor, color)))
     
