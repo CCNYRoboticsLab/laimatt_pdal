@@ -106,26 +106,28 @@ class WebODM_API:
         # For example, print the list of files extracted
         extracted_files = os.listdir(extract_dir)
         print(f"Extracted files: {extracted_files}", flush=True)
-                
-        images = glob.glob(os.path.join(extract_dir, "*.JPG")) + \
-                 glob.glob(os.path.join(extract_dir, "*.jpg")) + \
-                 glob.glob(os.path.join(extract_dir, "*.png")) + \
-                 glob.glob(os.path.join(extract_dir, "*.PNG"))
+        
+        return self.file_list(extract_dir)
+    
+    def file_list(self, file_dir):
+        images = glob.glob(os.path.join(file_dir, "*.JPG")) + \
+                 glob.glob(os.path.join(file_dir, "*.jpg")) + \
+                 glob.glob(os.path.join(file_dir, "*.png")) + \
+                 glob.glob(os.path.join(file_dir, "*.PNG"))
                 
         files = []
         for image_path in images:
             with open(image_path, 'rb') as img_file:
                 files.append(('images', (os.path.basename(image_path), img_file.read(), 'image/png')))
-        
+                
         return files
     
-    def init_nodeODM(self, project_id, files, color, node):
+    def init_nodeODM(self, project_id, files, color):
         index = color - 1
         
         taskurl = f"https://webodm.boshang.online/api/projects/{project_id}/tasks/"
         data = {
             "name": getName(TypeColor, color),
-            "processing_node": node
         }
         try:
             response = requests.post(taskurl, headers=self.headers, files=files, data=data)
@@ -135,7 +137,7 @@ class WebODM_API:
             print(f"Error in init_nodeODM: {str(e)}", flush=True)
             raise
         
-        if node == 1:
+        if color == 1:
             print(f"INSERT INTO whole_data (status) VALUES (3) for {getName(TypeColor, color)}", flush=True)
             self.cursor.execute("INSERT INTO whole_data (status) VALUES (3)")
             self.mydb.commit()
@@ -212,12 +214,16 @@ class WebODM_API:
             # self.task_id = ["74b51bf5-ba1a-46f4-a377-1d11ec94b3d5", "1b8a7e5e-65b2-4928-8638-cbbe00933776", "7f081d95-e7cc-468b-b17f-e3cf4beac9e0", "4df4bc29-b5a4-4db9-96db-257e530fab96"]
             # project_id = 219
             
+            # TO DO
+            files_green_crack = ""
+            files_blue_spall = ""
+            files_red_stain = ""
             
             tasks = [
-                (TypeColor.original.value, 1),
-                (TypeColor.green_cracks.value, 15),
-                (TypeColor.red_stains.value, 14),
-                (TypeColor.blue_spalls.value, 16)
+                (TypeColor.original.value, files),
+                (TypeColor.green_cracks.value, self.file_list(files_green_crack)),
+                (TypeColor.red_stains.value, self.file_list(files_blue_spall)),
+                (TypeColor.blue_spalls.value, self.file_list(files_red_stain))
             ]
             
             task_path = 'tasks/projID_{}'.format(project_id) 
@@ -226,8 +232,8 @@ class WebODM_API:
                 shutil.rmtree(task_path)
             os.makedirs(task_path)
             
-            for color, node in tasks:
-                self.init_nodeODM(project_id, files, color, node)
+            for color, files in tasks:
+                self.init_nodeODM(project_id, files, color)
                 result = self.post_task(project_id, color)
                 if result is not None:
                     return f"Error processing task for {getName(TypeColor, color)}: {result}"
