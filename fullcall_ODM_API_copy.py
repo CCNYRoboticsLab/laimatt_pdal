@@ -1,6 +1,7 @@
 from flask import Flask, request, send_file, jsonify, Response
 from filter import filter_from_webodm
 from pdal_script import create_components
+from remote_masks import remote_masks
 from enum import Enum
 from io import BytesIO
 import mysql.connector
@@ -63,13 +64,16 @@ class WebODM_API:
         self.task_id = ["", "", "", ""]
         self.SQLid = -1
         self.temp_dir = None  # Initialize temp_dir as None
+        self.extract_dir = None
         try:
             self.mydb = mysql.connector.connect(
             host="localhost",
             user="root",  # Your MySQL username
             password="",  # Your MySQL password (if any)
-            port=80,  # Your MySQL port
-            unix_socket="/app/mysql.sock"
+            # port=80,  # Your MySQL port
+            # unix_socket="/app/mysql.sock"
+            port=3308,  # Your MySQL port
+            unix_socket="/opt/lampp/var/mysql/mysql.sock"
             )
             self.cursor = self.mydb.cursor()
             self.cursor.execute("USE sample")
@@ -95,19 +99,19 @@ class WebODM_API:
     def extract_files(self, zip_filepath):
         try:
             # Extract the contents of the zip file
-            extract_dir = os.path.join(self.temp_dir, 'extracted_folder')
+            self.extract_dir = os.path.join(self.temp_dir, 'extracted_folder')
             with zipfile.ZipFile(zip_filepath, 'r') as zip_ref:
-                zip_ref.extractall(extract_dir)
+                zip_ref.extractall(self.extract_dir)
         except Exception as e:
             print(f"Error extracting zip file: {str(e)}", flush=True)
             return None
             
         # Now you can process the contents of the extracted folder
         # For example, print the list of files extracted
-        extracted_files = os.listdir(extract_dir)
+        extracted_files = os.listdir(self.extract_dir)
         print(f"Extracted files: {extracted_files}", flush=True)
         
-        return self.file_list(extract_dir)
+        return self.file_list(self.extract_dir)
     
     def file_list(self, file_dir):
         images = glob.glob(os.path.join(file_dir, "*.JPG")) + \
@@ -128,6 +132,7 @@ class WebODM_API:
         taskurl = f"https://webodm.boshang.online/api/projects/{project_id}/tasks/"
         data = {
             "name": getName(TypeColor, color),
+            "processing_node": 1
         }
         try:
             response = requests.post(taskurl, headers=self.headers, files=files, data=data)
@@ -210,34 +215,39 @@ class WebODM_API:
                 "name": "API_Call_threecolor"
             }
             project_id = requests.post(projecturl, headers=self.headers, data=data).json()['id']
-            # self.SQLid = [61, 61, 61, 61]
-            # self.task_id = ["74b51bf5-ba1a-46f4-a377-1d11ec94b3d5", "1b8a7e5e-65b2-4928-8638-cbbe00933776", "7f081d95-e7cc-468b-b17f-e3cf4beac9e0", "4df4bc29-b5a4-4db9-96db-257e530fab96"]
-            # project_id = 219
+            # project_id = 257
             
-            # TO DO
-            files_green_crack = ""
-            files_blue_spall = ""
-            files_red_stain = ""
-            
-            tasks = [
-                (TypeColor.original.value, files),
-                (TypeColor.green_cracks.value, self.file_list(files_green_crack)),
-                (TypeColor.red_stains.value, self.file_list(files_blue_spall)),
-                (TypeColor.blue_spalls.value, self.file_list(files_red_stain))
-            ]
-            
-            task_path = 'tasks/projID_{}'.format(project_id) 
+            project_folder = f'projID_{project_id}'
+            task_path = os.path.join('tasks', project_folder)
             if os.path.exists(task_path):
                 print(task_path + " already exists, remaking", flush=True)
                 shutil.rmtree(task_path)
             os.makedirs(task_path)
+            
+            og_image_path = os.path.join(task_path, 'images')
+            os.makedirs(og_image_path)
+            
+            shutil.copytree(self.extract_dir, og_image_path, dirs_exist_ok=True)
+            
+            remote_masks(project_folder)
+            
+            files_green_crack = f"/home/roboticslab/Developer/laimatt/laimatt_pdal/tasks/{project_folder}/images_out/filteredCrackOverlays/images"
+            files_blue_spall = f"/home/roboticslab/Developer/laimatt/laimatt_pdal/tasks/{project_folder}/images_out/filteredSpallOverlay/images"
+            files_red_stain = f"/home/roboticslab/Developer/laimatt/laimatt_pdal/tasks/{project_folder}/images_out/filteredStainOverlays/images"
+            
+            tasks = [
+                (TypeColor.original.value, files),
+                (TypeColor.green_cracks.value, self.file_list(files_green_crack)),
+                (TypeColor.red_stains.value, self.file_list(files_red_stain)),
+                (TypeColor.blue_spalls.value, self.file_list(files_blue_spall))
+            ]
             
             for color, files in tasks:
                 self.init_nodeODM(project_id, files, color)
                 result = self.post_task(project_id, color)
                 if result is not None:
                     return f"Error processing task for {getName(TypeColor, color)}: {result}"
-                time.sleep(30)  # Add a short delay between tasks  
+                time.sleep(10)  # Add a short delay between tasks  
             
             self.cursor.execute(f"UPDATE whole_data SET status = 4 WHERE uid = {self.SQLid}")
             self.mydb.commit()
@@ -380,9 +390,9 @@ def hello_geek():
     return '<h1>Hello from Flask & Docker</h2>'
 
 api = WebODM_API()
-# if __name__ == '__main__':
-#     # run_gunicorn()
+if __name__ == '__main__':
+    # run_gunicorn()
         
-#     # run as a flask app instead
-#     laimatt_app.run(host='0.0.0.0', port=57902, debug=True)
-#     # laimatt_app.run()
+    # run as a flask app instead
+    laimatt_app.run(host='0.0.0.0', port=57903, debug=True)
+    # laimatt_app.run()

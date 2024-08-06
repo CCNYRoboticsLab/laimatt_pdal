@@ -103,8 +103,10 @@ def populate_db(test_dir, test_index, uid, project_id, task_id, color):
         host="localhost",
         user="root",  # Your MySQL username
         password="",  # Your MySQL password (if any)
-        port=80,  # Your MySQL port
-        unix_socket="/app/mysql.sock"
+        # port=80,  # Your MySQL port
+        # unix_socket="/app/mysql.sock"
+        port=3308,  # Your MySQL port
+        unix_socket="/opt/lampp/var/mysql/mysql.sock"
     )
     cursor = mydb.cursor()
     cursor.execute("USE sample")
