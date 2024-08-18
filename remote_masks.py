@@ -2,10 +2,14 @@ import subprocess
 import configparser
 
 def remote_masks(project_id):
-    script_path = '/home/roboticslab/Developer/image2overlays/main.py'
-    working_directory = '/home/roboticslab/Developer/image2overlays'
-    input_directory = f'/home/roboticslab/Developer/laimatt/laimatt_pdal/tasks/{project_id}/images'
-    config_name = '/home/roboticslab/Developer/image2overlays/config.ini'
+    # script_path = '/home/roboticslab/Developer/image2overlays/main.py'
+    # working_directory = '/home/roboticslab/Developer/image2overlays'
+    # config_name = '/home/roboticslab/Developer/image2overlays/config.ini'
+    # input_directory = f'/home/roboticslab/Developer/laimatt/laimatt_pdal/tasks/{project_id}/images'
+    script_path = '/image2overlays/main.py'
+    working_directory = '/image2overlays'
+    config_name = '/image2overlays/config.ini'
+    input_directory = f'/app/tasks/{project_id}/images'
 
     config = configparser.ConfigParser()
     config.read(config_name)  # Replace with the actual path to your INI file

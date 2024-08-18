@@ -70,10 +70,10 @@ class WebODM_API:
             host="localhost",
             user="root",  # Your MySQL username
             password="",  # Your MySQL password (if any)
-            # port=80,  # Your MySQL port
-            # unix_socket="/app/mysql.sock"
-            port=3308,  # Your MySQL port
-            unix_socket="/opt/lampp/var/mysql/mysql.sock"
+            port=80,  # Your MySQL port
+            unix_socket="/app/mysql.sock"
+            # port=3308,  # Your MySQL port
+            # unix_socket="/opt/lampp/var/mysql/mysql.sock"
             )
             self.cursor = self.mydb.cursor()
             self.cursor.execute("USE sample")
@@ -231,26 +231,26 @@ class WebODM_API:
             
             remote_masks(project_folder)
             
-            files_green_crack = f"/home/roboticslab/Developer/laimatt/laimatt_pdal/tasks/{project_folder}/images_out/filteredCrackOverlays/images"
-            files_blue_spall = f"/home/roboticslab/Developer/laimatt/laimatt_pdal/tasks/{project_folder}/images_out/filteredSpallOverlay/images"
-            files_red_stain = f"/home/roboticslab/Developer/laimatt/laimatt_pdal/tasks/{project_folder}/images_out/filteredStainOverlays/images"
+            # files_green_crack = f"/home/roboticslab/Developer/laimatt/laimatt_pdal/tasks/{project_folder}/images_out/filteredCrackOverlays/images"
+            # files_blue_spall = f"/home/roboticslab/Developer/laimatt/laimatt_pdal/tasks/{project_folder}/images_out/filteredSpallOverlay/images"
+            # files_red_stain = f"/home/roboticslab/Developer/laimatt/laimatt_pdal/tasks/{project_folder}/images_out/filteredStainOverlays/images"
             
-            tasks = [
-                (TypeColor.original.value, files),
-                (TypeColor.green_cracks.value, self.file_list(files_green_crack)),
-                (TypeColor.red_stains.value, self.file_list(files_red_stain)),
-                (TypeColor.blue_spalls.value, self.file_list(files_blue_spall))
-            ]
+            # tasks = [
+            #     (TypeColor.original.value, files),
+            #     (TypeColor.green_cracks.value, self.file_list(files_green_crack)),
+            #     (TypeColor.red_stains.value, self.file_list(files_red_stain)),
+            #     (TypeColor.blue_spalls.value, self.file_list(files_blue_spall))
+            # ]
             
-            for color, files in tasks:
-                self.init_nodeODM(project_id, files, color)
-                result = self.post_task(project_id, color)
-                if result is not None:
-                    return f"Error processing task for {getName(TypeColor, color)}: {result}"
-                time.sleep(10)  # Add a short delay between tasks  
+            # for color, files in tasks:
+            #     self.init_nodeODM(project_id, files, color)
+            #     result = self.post_task(project_id, color)
+            #     if result is not None:
+            #         return f"Error processing task for {getName(TypeColor, color)}: {result}"
+            #     time.sleep(10)  # Add a short delay between tasks  
             
-            self.cursor.execute(f"UPDATE whole_data SET status = 4 WHERE uid = {self.SQLid}")
-            self.mydb.commit()
+            # self.cursor.execute(f"UPDATE whole_data SET status = 4 WHERE uid = {self.SQLid}")
+            # self.mydb.commit()
             return "All tasks completed and clustered\n"
         except Exception as e:
             print(f"Error in create_task: {str(e)}", flush=True)

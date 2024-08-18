@@ -14,6 +14,7 @@ import tempfile
 import shutil
 import traceback
 import sys
+import math
 
 class GetFileException(Exception):
     pass
@@ -265,21 +266,70 @@ class WebODM_API:
         
         if request_type == "textured_model.glb":
             if "textured_model.zip" in available_assets:
-                return 'https://webodm.boshang.online/api/projects/{project_id}/tasks/{task_id}/download/textured_model.glb'
+                return f'https://webodm.boshang.online/api/projects/{project_id}/tasks/{task_id}/download/textured_model.glb'
             else:
                 raise GetFileException("task found, but textured zip file not found")
         elif request_type == "georeferenced_model.laz":
             if "georeferenced_model.laz" in available_assets: 
-                return 'https://webodm.boshang.online/api/projects/{project_id}/tasks/{task_id}/download/georeferenced_model.laz'
+                return f'https://webodm.boshang.online/api/projects/{project_id}/tasks/{task_id}/download/georeferenced_model.laz'
             else:
                 raise GetFileException("task found, but laz file not found")
         elif request_type == "all.zip":
             if "all.zip" in available_assets: 
-                return 'https://webodm.boshang.online/api/projects/{project_id}/tasks/{task_id}/download/all.zip'
+                return f'https://webodm.boshang.online/api/projects/{project_id}/tasks/{task_id}/download/all.zip'
             else:
                 raise GetFileException("task found, but all.zip file not found")
         else:
             raise GetFileException("invalid request type")
+        
+    def get_bounding_box_corners(self, x, y, z, length, width, height):
+        # Calculate half of each dimension
+        half_length = length / 2.0
+        half_width = width / 2.0
+        half_height = height / 2.0
+
+        # Calculate min and max bounds
+        min_x = x - half_length
+        max_x = x + half_length
+        min_y = y - half_width
+        max_y = y + half_width
+        min_z = z - half_height
+        max_z = z + half_height
+
+        # Return min and max bounds as lists
+        min_bound = [min_x, min_y, min_z]
+        max_bound = [max_x, max_y, max_z]
+
+        return min_bound, max_bound
+    
+    def get_cracks(self):
+        
+        start_row = 34
+        end_row = 45
+        columns = ["center_lat", "center_long", "center_alt", "box_length", "box_width", "box_height"]  # Replace with your actual column names
+
+        # Update the SQL query to select specific columns
+        query = f"SELECT {', '.join(columns)} FROM patch_crack LIMIT %s OFFSET %s"
+        
+        limit = end_row - start_row + 1
+        offset = start_row - 1
+
+        # Execute the query with LIMIT and OFFSET
+        self.cursor.execute(query, (limit, offset))
+
+        # Fetch and iterate through the rows
+        results = []
+        for row in self.cursor:
+            try:
+                # Convert each column value to float
+                float_values = [float(value) for value in row]
+                results.append(float_values)
+                # Print the float values
+                print(f"Float Values: {float_values}", flush=True)
+            except ValueError as e:
+                print(f"Error converting value to float: {e}", flush=True)
+            
+        return results        
 
 # API endpoint
 @laimatt_app.route('/task', methods=['POST'])
@@ -356,8 +406,8 @@ def downloadwebodm(project_id, task_id, filename):
     # Send a GET request to the URL
     print(url, flush = True)
     response = requests.get(url, headers=api.authenticate())
-    if (response.content < 50):
-        response = requests.get(url, headers=api.authenticate())
+    # if (response.content < 50):
+    #     response = requests.get(url, headers=api.authenticate())
 
     if response.status_code == 200:
         # If the request is successful, create a BytesIO object to hold the file contents
@@ -372,6 +422,34 @@ def downloadwebodm(project_id, task_id, filename):
 @laimatt_app.route('/')
 def hello_geek():
     return '<h1>Hello from Flask & Docker</h2>'
+
+@laimatt_app.route('/analyze_crack', methods=['GET'])
+def analyze_crack():
+    try:
+        x = float(request.args.get("x"))
+        y = float(request.args.get("y"))
+        z = float(request.args.get("z"))
+        length = float(request.args.get("length"))
+        width = float(request.args.get("width"))
+        height = float(request.args.get("height"))
+        
+        min_bound, max_bound = api.get_bounding_box_corners(x, y, z, length, width, height)
+        cracks = api.get_cracks()
+        
+        diagonal = 0
+        for crack in cracks:
+            if crack[0] >= min_bound[0] and crack[0] <= max_bound[0] and \
+                crack[1] >= min_bound[1] and crack[1] <= max_bound[1] and \
+                crack[2] >= min_bound[2] and crack[2] <= max_bound[2]:
+                
+                print(f"{crack} chosen", flush=True)
+                diagonal += math.sqrt(length**2 + width**2 + height**2)
+                    
+        return str(diagonal)
+        
+    except Exception as e:
+        print(f"Error in /analyze_crack: {str(e)}", flush = True)
+        return jsonify({"error": "An error occurred during analysis."}), 500
 
 api = WebODM_API()
 # if __name__ == '__main__':
