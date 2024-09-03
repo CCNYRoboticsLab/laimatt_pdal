@@ -12,7 +12,7 @@ RUN apt-get update
 
 RUN chmod +x run.sh
 
-RUN conda env create -f environment.yml
+RUN conda env create -f environment_cors.yml
 
 RUN echo "source activate pdal_env" > ~/.bashrc
 ENV PATH=/opt/conda/envs/pdal_env/bin:$PATH
