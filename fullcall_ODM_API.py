@@ -2,6 +2,7 @@ from flask import Flask, request, send_file, jsonify, Response
 from flask_cors import CORS
 from filter import filter_from_webodm
 from pdal_script import create_components
+from remote_masks import remote_masks
 from enum import Enum
 from io import BytesIO
 import mysql.connector
@@ -69,6 +70,7 @@ class WebODM_API:
         self.task_id = ["", "", "", ""]
         self.SQLid = -1
         self.temp_dir = None  # Initialize temp_dir as None
+        self.extract_dir = None
         try:
             self.mydb = mysql.connector.connect(
                 host="127.0.0.1",
@@ -265,25 +267,43 @@ class WebODM_API:
             }
             project_id = requests.post(projecturl, headers=self.headers, data=data).json()['id']
             
-            tasks = [
-                (TypeColor.original.value, 1),
-                (TypeColor.green_cracks.value, 15),
-                (TypeColor.red_stains.value, 14),
-                (TypeColor.blue_spalls.value, 16)
-            ]
-            
-            task_path = 'tasks/projID_{}'.format(project_id) 
+            project_folder = f'projID_{project_id}'
+            task_path = os.path.join('tasks', project_folder)
             if os.path.exists(task_path):
                 print(task_path + " already exists, remaking", flush=True)
                 shutil.rmtree(task_path)
             os.makedirs(task_path)
             
-            for color, node in tasks:
-                self.init_nodeODM(project_id, files, color, node)
+            og_image_path = os.path.join(task_path, 'images')
+            os.makedirs(og_image_path)
+            
+            pc_path = os.path.join(task_path, 'pointclouds')
+            subdirs = ['blue_spalls', 'red_stains', 'green_cracks']
+            for subdir in subdirs:
+                os.makedirs(os.path.join(pc_path, subdir), exist_ok=True)
+            
+            
+            shutil.copytree(self.extract_dir, og_image_path, dirs_exist_ok=True)
+            
+            remote_masks(project_folder)
+            
+            files_green_crack = f"/home/roboticslab/Developer/laimatt/laimatt_pdal/tasks/{project_folder}/images_out/filteredCrackOverlays/images"
+            files_blue_spall = f"/home/roboticslab/Developer/laimatt/laimatt_pdal/tasks/{project_folder}/images_out/filteredSpallOverlays/images"
+            files_red_stain = f"/home/roboticslab/Developer/laimatt/laimatt_pdal/tasks/{project_folder}/images_out/filteredStainOverlays/images"
+            
+            tasks = [
+                (TypeColor.original.value, files),
+                (TypeColor.green_cracks.value, self.file_list(files_green_crack)),
+                (TypeColor.red_stains.value, self.file_list(files_red_stain)),
+                (TypeColor.blue_spalls.value, self.file_list(files_blue_spall))
+            ]
+            
+            for color, files in tasks:
+                self.init_nodeODM(project_id, files, color)
                 result = self.post_task(project_id, color)
                 if result is not None:
                     return f"Error processing task for {getName(TypeColor, color)}: {result}"
-                time.sleep(30)  # Add a short delay between tasks  
+                time.sleep(10)  # Add a short delay between tasks  
             
             self.cursor.execute(f"UPDATE whole_data SET status = 4 WHERE uid = {self.SQLid}")
             self.mydb.commit()
@@ -440,6 +460,8 @@ def downloadwebodm(project_id, task_id, filename):
         return repr(e)
         
     response = requests.get(url, headers=api.authenticate())
+    if (response.content < 50):
+        response = requests.get(url, headers=api.authenticate())
 
     if response.status_code == 200:
         file_stream = BytesIO(response.content)

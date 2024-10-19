@@ -14,6 +14,8 @@ RUN chmod +x run.sh
 
 RUN conda env create -f environment_cors.yml
 
+RUN conda env create -f environment_visinspect.yml
+
 RUN echo "source activate pdal_env" > ~/.bashrc
 ENV PATH=/opt/conda/envs/pdal_env/bin:$PATH
 
