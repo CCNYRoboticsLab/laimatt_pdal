@@ -74,8 +74,9 @@ class WebODM_API:
                 host="127.0.0.1",
                 user="phpMyAdminRoot",  # Your MySQL username
                 password="roboticslab",  # Your MySQL password (if any)
-                port=3306,  # Your MySQL port
-                # unix_socket="/app/mysql.sock"
+                # port=3306,  # Your MySQL port
+                port=80,
+                unix_socket="/app/mysql.sock"
             )
             print("Database connected.")
             self.cursor = self.mydb.cursor()
@@ -126,41 +127,61 @@ class WebODM_API:
             print(f"Error accessing temp_dir: {e}", file=sys.stderr)
 
         self.temp_dir = None
-
-
+    
     def extract_files(self, zip_filepath):
         try:
             # Extract the contents of the zip file
-            extract_dir = os.path.join(self.temp_dir, 'extracted_folder')
+            self.extract_dir = os.path.join(self.temp_dir, 'extracted_folder')
             with zipfile.ZipFile(zip_filepath, 'r') as zip_ref:
-                zip_ref.extractall(extract_dir)
+                zip_ref.extractall(self.extract_dir)
         except Exception as e:
             print(f"Error extracting zip file: {str(e)}", flush=True)
             return None
             
         # Now you can process the contents of the extracted folder
-        extracted_files = os.listdir(extract_dir)
+        # For example, print the list of files extracted
+        extracted_files = os.listdir(self.extract_dir)
         print(f"Extracted files: {extracted_files}", flush=True)
-                
-        images = glob.glob(os.path.join(extract_dir, "*.JPG")) + \
-                 glob.glob(os.path.join(extract_dir, "*.jpg")) + \
-                 glob.glob(os.path.join(extract_dir, "*.png")) + \
-                 glob.glob(os.path.join(extract_dir, "*.PNG"))
+        
+        return self.file_list(self.extract_dir)
+    
+    def file_list(self, file_dir):
+        images = glob.glob(os.path.join(file_dir, "*.JPG")) + \
+                 glob.glob(os.path.join(file_dir, "*.jpg")) + \
+                 glob.glob(os.path.join(file_dir, "*.png")) + \
+                 glob.glob(os.path.join(file_dir, "*.PNG"))
                 
         files = []
         for image_path in images:
             with open(image_path, 'rb') as img_file:
                 files.append(('images', (os.path.basename(image_path), img_file.read(), 'image/png')))
-        
+                
         return files
     
-    def init_nodeODM(self, project_id, files, color, node):
+    # def init_nodeODM(self, project_id, files, color, node):
+    #     index = color - 1
+        
+    #     taskurl = f"https://webodm.boshang.online/api/projects/{project_id}/tasks/"
+    #     data = {
+    #         "name": getName(TypeColor, color),
+    #         "processing_node": node
+    #     }
+    #     try:
+    #         response = requests.post(taskurl, headers=self.headers, files=files, data=data)
+    #         response.raise_for_status()  # Raises an HTTPError for bad responses
+    #         self.task_id[index] = response.json()['id']
+    #     except requests.exceptions.RequestException as e:
+    #         print(f"Error in init_nodeODM: {str(e)}", flush=True)
+    #         raise
+        
+    #     if node == 1:
+    def init_nodeODM(self, project_id, files, color):
         index = color - 1
         
         taskurl = f"https://webodm.boshang.online/api/projects/{project_id}/tasks/"
         data = {
             "name": getName(TypeColor, color),
-            "processing_node": node
+            "processing_node": 1
         }
         try:
             response = requests.post(taskurl, headers=self.headers, files=files, data=data)
@@ -170,7 +191,7 @@ class WebODM_API:
             print(f"Error in init_nodeODM: {str(e)}", flush=True)
             raise
         
-        if node == 1:
+        if color == 1:
             print(f"INSERT INTO whole_data (status) VALUES (3) for {getName(TypeColor, color)}", flush=True)
             self.cursor.execute("INSERT INTO whole_data (status) VALUES (3)")
             self.mydb.commit()
@@ -461,3 +482,9 @@ def analyze_crack():
         return jsonify({"error": "An error occurred during analysis."}), 500
 
 api = WebODM_API()
+if __name__ == '__main__':
+    # run_gunicorn()
+        
+    # run as a flask app instead
+    laimatt_app.run(host='0.0.0.0', port=57903, debug=True)
+    # laimatt_app.run()

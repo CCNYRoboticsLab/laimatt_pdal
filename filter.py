@@ -33,9 +33,9 @@ def filter_points_laspy(file_path, output_file, color):
     # Define filtered condition: R > 0.8, G < 0.2, B < 0.2 (color values are in range 0 to 1)
     match color:
         case TypeColor.green_cracks.value: # green
-            filtered_mask = (colors[:, 0] < 0.3) & (colors[:, 1] > 0.7) & (colors[:, 2] < 0.3)
+            filtered_mask = (colors[:, 0] < 0.4) & (colors[:, 1] > 0.5) & (colors[:, 2] < 0.4)
         case TypeColor.red_stains.value: # red
-            filtered_mask = (colors[:, 0] > 0.7) & (colors[:, 1] < 0.3) & (colors[:, 2] < 0.3)
+            filtered_mask = (colors[:, 0] > 0.5) & (colors[:, 1] < 0.4) & (colors[:, 2] < 0.4)
         case _: # blue 
             filtered_mask = (colors[:, 0] < 0.3) & (colors[:, 1] < 0.3) & (colors[:, 2] > 0.7)
 
@@ -105,10 +105,10 @@ def filter_from_webodm(project_id, task_id, color): # entire pipeline
     #     # Create the directory
     #     os.makedirs(webodm_path)
     
-    task_path = 'tasks/projID_{}'.format(project_id) 
+    task_path = 'tasks/projID_{}/pointclouds/{}'.format(project_id, getName(TypeColor, color)) 
 
-    input_file = task_path + '/original_model.laz'  # Replace with your input LAS/LAZ file path
-    input_las = task_path + '/original_model.las'
+    input_file = task_path + '/{}_original_model.laz'.format(getName(TypeColor, color))  # Replace with your input LAS/LAZ file path
+    input_las = task_path + '/{}_original_model.las'.format(getName(TypeColor, color))
     output_file = task_path + '/{}_filtered_model.las'.format(getName(TypeColor, color))  # Specify output file path for filtered points
     url = 'https://webodm.boshang.online/api/projects/{}/tasks/{}/download/georeferenced_model.laz'.format(project_id, task_id)
     download_file(url, input_file)
@@ -116,3 +116,5 @@ def filter_from_webodm(project_id, task_id, color): # entire pipeline
     # alt = '/var/lib/docker/volumes/webodm_appmedia/_data/project/{}/task/{}/assets/odm_georeferencing/odm_georeferenced_model.laz'.format(project_id, task_id)
     lazTolas(input_file, input_las)
     filter_points_laspy(input_las, output_file, color)
+
+# filter_from_webodm(272, '641c9c48-c021-44fe-a2a1-fe54004b8f43', 2)

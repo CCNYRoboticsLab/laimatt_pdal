@@ -100,13 +100,21 @@ def bounding_box_info(las_file_path):
     
 def populate_db(test_dir, test_index, uid, project_id, task_id, color):
     mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",  # Your MySQL username
-        password="",  # Your MySQL password (if any)
-        # port=80,  # Your MySQL port
-        # unix_socket="/app/mysql.sock"
-        port=3308,  # Your MySQL port
+        # host="localhost",
+        # user="root",  # Your MySQL username
+        # password="",  # Your MySQL password (if any)
+        # # port=80,  # Your MySQL port
+        # # unix_socket="/app/mysql.sock"
+        # port=3308,  # Your MySQL port
+        # unix_socket="/opt/lampp/var/mysql/mysql.sock"
+        
+        host="127.0.0.1",
+        user="phpMyAdminRoot",  # Your MySQL username
+        password="roboticslab",  # Your MySQL password (if any)
+        port=3306,  # Your MySQL port
         unix_socket="/opt/lampp/var/mysql/mysql.sock"
+        # port=80,
+        # unix_socket="/app/mysql.sock"
     )
     cursor = mydb.cursor()
     cursor.execute("USE sample")
@@ -146,7 +154,7 @@ def create_components(project_id, task_id, uid, color):
     
     folder_path = 'tasks/projID_{}/'.format(project_id)
     test_path = os.path.join(folder_path, "tests")
-    file_name = os.path.join(folder_path, '{}_filtered_model.las'.format(getName(TypeColor, color)))
+    file_name = os.path.join(folder_path, 'pointclouds', getName(TypeColor, color), '{}_filtered_model.las'.format(getName(TypeColor, color)))
     
     if not (os.path.exists(test_path)):
         os.makedirs(os.path.join(test_path))

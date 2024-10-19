@@ -67,13 +67,13 @@ class WebODM_API:
         self.extract_dir = None
         try:
             self.mydb = mysql.connector.connect(
-            host="localhost",
-            user="root",  # Your MySQL username
-            password="",  # Your MySQL password (if any)
-            port=80,  # Your MySQL port
-            unix_socket="/app/mysql.sock"
-            # port=3308,  # Your MySQL port
-            # unix_socket="/opt/lampp/var/mysql/mysql.sock"
+                host="127.0.0.1",
+                user="phpMyAdminRoot",  # Your MySQL username
+                password="roboticslab",  # Your MySQL password (if any)
+                port=3306,  # Your MySQL port
+                unix_socket="/opt/lampp/var/mysql/mysql.sock"
+                # port=80,
+                # unix_socket="/app/mysql.sock"
             )
             self.cursor = self.mydb.cursor()
             self.cursor.execute("USE sample")
@@ -215,7 +215,7 @@ class WebODM_API:
                 "name": "API_Call_threecolor"
             }
             project_id = requests.post(projecturl, headers=self.headers, data=data).json()['id']
-            # project_id = 257
+            # project_id = 273
             
             project_folder = f'projID_{project_id}'
             task_path = os.path.join('tasks', project_folder)
@@ -227,30 +227,36 @@ class WebODM_API:
             og_image_path = os.path.join(task_path, 'images')
             os.makedirs(og_image_path)
             
+            pc_path = os.path.join(task_path, 'pointclouds')
+            subdirs = ['blue_spalls', 'red_stains', 'green_cracks']
+            for subdir in subdirs:
+                os.makedirs(os.path.join(pc_path, subdir), exist_ok=True)
+            
+            
             shutil.copytree(self.extract_dir, og_image_path, dirs_exist_ok=True)
             
             remote_masks(project_folder)
             
-            # files_green_crack = f"/home/roboticslab/Developer/laimatt/laimatt_pdal/tasks/{project_folder}/images_out/filteredCrackOverlays/images"
-            # files_blue_spall = f"/home/roboticslab/Developer/laimatt/laimatt_pdal/tasks/{project_folder}/images_out/filteredSpallOverlay/images"
-            # files_red_stain = f"/home/roboticslab/Developer/laimatt/laimatt_pdal/tasks/{project_folder}/images_out/filteredStainOverlays/images"
+            files_green_crack = f"/home/roboticslab/Developer/laimatt/laimatt_pdal/tasks/{project_folder}/images_out/filteredCrackOverlays/images"
+            files_blue_spall = f"/home/roboticslab/Developer/laimatt/laimatt_pdal/tasks/{project_folder}/images_out/filteredSpallOverlays/images"
+            files_red_stain = f"/home/roboticslab/Developer/laimatt/laimatt_pdal/tasks/{project_folder}/images_out/filteredStainOverlays/images"
             
-            # tasks = [
-            #     (TypeColor.original.value, files),
-            #     (TypeColor.green_cracks.value, self.file_list(files_green_crack)),
-            #     (TypeColor.red_stains.value, self.file_list(files_red_stain)),
-            #     (TypeColor.blue_spalls.value, self.file_list(files_blue_spall))
-            # ]
+            tasks = [
+                (TypeColor.original.value, files),
+                (TypeColor.green_cracks.value, self.file_list(files_green_crack)),
+                (TypeColor.red_stains.value, self.file_list(files_red_stain)),
+                (TypeColor.blue_spalls.value, self.file_list(files_blue_spall))
+            ]
             
-            # for color, files in tasks:
-            #     self.init_nodeODM(project_id, files, color)
-            #     result = self.post_task(project_id, color)
-            #     if result is not None:
-            #         return f"Error processing task for {getName(TypeColor, color)}: {result}"
-            #     time.sleep(10)  # Add a short delay between tasks  
+            for color, files in tasks:
+                self.init_nodeODM(project_id, files, color)
+                result = self.post_task(project_id, color)
+                if result is not None:
+                    return f"Error processing task for {getName(TypeColor, color)}: {result}"
+                time.sleep(10)  # Add a short delay between tasks  
             
-            # self.cursor.execute(f"UPDATE whole_data SET status = 4 WHERE uid = {self.SQLid}")
-            # self.mydb.commit()
+            self.cursor.execute(f"UPDATE whole_data SET status = 4 WHERE uid = {self.SQLid}")
+            self.mydb.commit()
             return "All tasks completed and clustered\n"
         except Exception as e:
             print(f"Error in create_task: {str(e)}", flush=True)
