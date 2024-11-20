@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  laimatt:
+    container_name: laimatt_i2o_bo
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "57902:57902"
+    volumes:
+      - .:/app
+      - /opt/lampp/var/mysql/mysql.sock:/app/mysql.sock
+      - /home/roboticslab/Developer/laimatt/image2overlays:/image2overlays
+    restart: unless-stopped 

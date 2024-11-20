@@ -2,8 +2,17 @@
 A complete python pipeline that facilitates the use of WebODM and PDAL to recognize, cluster, and log various data of concrete defects.  
 Author: Matthew Lai
 
-This pipeline runs on a docker environment. To restart it, please use the command
-```docker run -d --name laimatt -v .:/app -v /opt/lampp/var/mysql/mysql.sock:/app/mysql.sock -p 57902:57902 laimatt```
+This pipeline runs on a docker environment. You can start it using either Docker Compose or Docker:
+
+Using Docker Compose (recommended):
+```bash
+docker compose up -d
+```
+
+Using Docker directly:
+```bash
+docker run -d --name laimatt -v .:/app -v /opt/lampp/var/mysql/mysql.sock:/app/mysql.sock -p 57902:57902 laimatt
+```
 
 ## Commands
 ### Loading a folder of images

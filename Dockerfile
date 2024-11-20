@@ -14,7 +14,13 @@ RUN chmod +x run.sh
 
 RUN conda env create -f environment_cors.yml
 
-RUN conda env create -f environment_visinspect.yml
+# Add retry mechanism and increase timeout for conda
+RUN conda config --set remote_read_timeout_secs 600 && \
+    for i in {1..3}; do \
+        conda env create -f environment_visinspect.yml && break || \
+        echo "Retry $i/3" && \
+        sleep 15; \
+    done
 
 RUN echo "source activate pdal_env" > ~/.bashrc
 ENV PATH=/opt/conda/envs/pdal_env/bin:$PATH

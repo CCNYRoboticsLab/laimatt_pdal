@@ -50,19 +50,42 @@ def getName(enum_class, value):
 
 laimatt_app = Flask(__name__)
 laimatt_app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024 * 1024 # 4 gb limit
-CORS(laimatt_app, resources={r"/analyze_crack": {"origins": "*"}})
 
-def cors_origin(origins):
-    def wrapper(response):
-        origin = request.headers.get('Origin')
-        if origin in origins:
-            response.headers['Access-Control-Allow-Origin'] = origin
-            response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
-            response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
-        return response
-    return wrapper
+# Update allowed origins to include null for file:// protocol
+ALLOWED_ORIGINS = ["http://localhost:3000", "https://webodm.boshang.online", "http://boshang.online:37354", "null"]
 
-laimatt_app.after_request(cors_origin(["http://boshang.online:37354", "https://webodm.boshang.online/"]))
+CORS(laimatt_app, 
+     supports_credentials=True,
+     resources={r"/*": {
+         "origins": ALLOWED_ORIGINS,
+         "methods": ["GET", "POST", "OPTIONS"],
+         "allow_headers": ["Content-Type", "Authorization", "Origin"]
+     }})
+
+@laimatt_app.after_request
+def add_cors_headers(response):
+    origin = request.headers.get('Origin', 'null')
+    if origin == 'null':
+        response.headers['Access-Control-Allow-Origin'] = 'null'
+    elif origin in ALLOWED_ORIGINS:
+        response.headers['Access-Control-Allow-Origin'] = origin
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, Origin'
+    return response
+
+@laimatt_app.route('/<path:path>', methods=['OPTIONS'])
+def options_handler(path):
+    response = Response()
+    origin = request.headers.get('Origin', 'null')
+    if origin == 'null':
+        response.headers['Access-Control-Allow-Origin'] = 'null'
+    elif origin in ALLOWED_ORIGINS:
+        response.headers['Access-Control-Allow-Origin'] = origin
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    response.headers['Access-Control-Allow-Methods'] = 'GET, POST, OPTIONS'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization, Origin'
+    return response
 
 class WebODM_API:
 
