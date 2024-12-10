@@ -16,7 +16,7 @@ graceful_timeout = 86400 # 24 hours
 import os
 
 # config_file = 'docker_config.yaml' if is_docker() else 'local_config.yaml'
-errorlog = '/app/gunicorn_logs/gunicorn-error.log' if is_docker() else './gunicorn_logs/gunicorn-error.log'
-accesslog = '/app/gunicorn_logs/gunicorn-access.log' if is_docker() else './gunicorn_logs/gunicorn-access.log'
+errorlog = '/app/gunicorn_logs/gunicorn-error.log' if is_docker() else '/home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-error.log'
+accesslog = '/app/gunicorn_logs/gunicorn-access.log' if is_docker() else '/home/roboticslab/Developer/laimatt/laimatt_pdal/gunicorn_logs/gunicorn-access.log'
 loglevel = 'debug'
 capture_output = True

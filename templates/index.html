@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload</title>
+    <style>
+        .indeterminate {
+            animation: progress 2s linear infinite;
+        }
+        
+        @keyframes progress {
+            0% {
+                value: 0;
+            }
+            50% {
+                value: 50;
+            }
+            100% {
+                value: 100;
+            }
+        }
+    </style>
+    <!-- Cronitor RUM -->
+    <script async src="https://rum.cronitor.io/script.js"></script>
+    <script>
+        window.cronitor = window.cronitor || function() { (window.cronitor.q = window.cronitor.q || []).push(arguments); };
+        cronitor('config', { clientKey: '5d5e38a46397c4bfd881c6c519a601c8' });
+    </script>
+</head>
+<body>
+    <h1>Upload Image</h1>
+    <form id="uploadForm">
+        <input type="file" id="fileInput" name="image" accept="image/*,.zip,application/zip,application/x-zip,application/x-zip-compressed" required>
+        <button type="submit">Upload</button>
+        <div id="progressContainer" style="display: none; margin-top: 20px;">
+            <progress id="uploadProgress" value="0" max="100"></progress>
+            <span id="progressText">0%</span>
+        </div>
+    </form>
+    <p id="status"></p>
+
+    <script>
+        const uploadForm = document.getElementById('uploadForm');
+        const statusText = document.getElementById('status');
+        const progressBar = document.getElementById('uploadProgress');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressText = document.getElementById('progressText');
+
+        uploadForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const fileInput = document.getElementById('fileInput');
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+
+            progressContainer.style.display = 'block';
+            statusText.textContent = 'Uploading...';
+
+            const xhr = new XMLHttpRequest();
+
+            xhr.upload.addEventListener('progress', (event) => {
+                if (event.lengthComputable) {
+                    const percentCompleted = Math.round((event.loaded * 100) / event.total);
+                    progressBar.value = percentCompleted;
+                    progressText.textContent = `${percentCompleted}%`;
+                    
+                    if (percentCompleted === 100) {
+                        statusText.textContent = 'Processing... (This may take several hours)';
+                        progressBar.classList.add('indeterminate');
+                    }
+                }
+            });
+
+            xhr.addEventListener('load', () => {
+                if (xhr.status === 200) {
+                    statusText.textContent = 'Processing completed successfully!';
+                } else {
+                    statusText.textContent = 'Processing failed.';
+                }
+                progressBar.classList.remove('indeterminate');
+                setTimeout(() => {
+                    progressContainer.style.display = 'none';
+                    progressBar.value = 0;
+                    progressText.textContent = '0%';
+                }, 2000);
+            });
+
+            xhr.addEventListener('error', () => {
+                statusText.textContent = 'An error occurred.';
+                console.error('Error:', xhr.statusText);
+                progressContainer.style.display = 'none';
+                progressBar.classList.remove('indeterminate');
+            });
+
+            <!-- xhr.open('POST', 'http://127.0.0.1:5001/upload'); -->
+            xhr.open('POST', 'https://laimatt.boshang.online/task');
+            xhr.send(formData);
+        });
+    </script>
+</body>
+</html>

@@ -111,10 +111,10 @@ def populate_db(test_dir, test_index, uid, project_id, task_id, color):
         host="127.0.0.1",
         user="phpMyAdminRoot",  # Your MySQL username
         password="roboticslab",  # Your MySQL password (if any)
-        # port=3306,  # Your MySQL port
-        # unix_socket="/opt/lampp/var/mysql/mysql.sock"
-        port=80,
-        unix_socket="/app/mysql.sock"
+        port=3306,  # Your MySQL port
+        unix_socket="/opt/lampp/var/mysql/mysql.sock"
+        # port=80,
+        # unix_socket="/app/mysql.sock"
     )
     cursor = mydb.cursor()
     cursor.execute("USE sample")

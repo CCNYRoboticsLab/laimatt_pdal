@@ -210,6 +210,7 @@ dependencies:
   - opencv=4.6.0=py310hff52083_9
   - openh264=2.3.1=h27087fc_1
   - openjpeg=2.5.0=hfec8fc6_2
+  - openssl=3.1.1=hd590300_0
   - p11-kit=0.24.1=hc5aa10d_0
   - packaging=22.0=py310h06a4308_0
   - pandas=1.5.3=py310h9b08913_0
@@ -233,6 +234,7 @@ dependencies:
   - pycodestyle=2.10.0=py310h06a4308_0
   - pycparser=2.21=pyhd3eb1b0_0
   - pygments=2.11.2=pyhd3eb1b0_0
+  - pyopenssl=22.0.0=pyhd3eb1b0_0
   - pyparsing=3.0.9=py310h06a4308_0
   - pyqt=5.15.7=py310h29803b5_2
   - pyqt5-sip=12.11.0=py310hd8f1fbe_2
