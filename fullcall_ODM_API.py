@@ -18,6 +18,18 @@ import traceback
 import sys
 import math
 from flask import render_template
+import logging
+from typing import Optional, List, Tuple
+
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(sys.stdout),
+        logging.FileHandler('upload_debug.log')
+    ]
+)
 
 
 def is_docker():
@@ -148,58 +160,63 @@ class WebODM_API:
     NO_IMAGES = -1
 
     def cleanup(self):
+        """Clean up resources if they exist"""
         try:
             if hasattr(self, "cursor") and self.cursor:
-                try:
-                    self.cursor.close()
-                except ReferenceError as e:
-                    print(f"ReferenceError closing cursor: {e}", file=sys.stderr)
-                except Exception as e:
-                    print(f"Error closing cursor: {e}", file=sys.stderr)
+                self.cursor.close()
+                logging.debug("Closed database cursor")
         except Exception as e:
-            print(f"Error accessing cursor: {e}", file=sys.stderr)
+            logging.error(f"Error closing cursor: {e}")
 
         try:
             if hasattr(self, "mydb") and self.mydb:
-                try:
-                    self.mydb.close()
-                except ReferenceError as e:
-                    print(
-                        f"ReferenceError closing database connection: {e}",
-                        file=sys.stderr,
-                    )
-                except Exception as e:
-                    print(f"Error closing database connection: {e}", file=sys.stderr)
+                self.mydb.close()
+                logging.debug("Closed database connection")
         except Exception as e:
-            print(f"Error accessing database connection: {e}", file=sys.stderr)
+            logging.error(f"Error closing database: {e}")
 
         try:
             if self.temp_dir and os.path.exists(self.temp_dir):
-                try:
-                    shutil.rmtree(self.temp_dir)
-                except Exception as e:
-                    print(f"Error removing temp_dir: {e}", file=sys.stderr)
+                shutil.rmtree(self.temp_dir)
+                logging.debug(f"Removed temporary directory: {self.temp_dir}")
         except Exception as e:
-            print(f"Error accessing temp_dir: {e}", file=sys.stderr)
+            logging.error(f"Error removing temp directory: {e}")
 
         self.temp_dir = None
 
-    def extract_files(self, zip_filepath):
+    def extract_files(self, zip_filepath) -> Optional[List[Tuple[str, tuple]]]:
+        """
+        Extract and validate files from uploaded zip archive
+        Returns list of files or None if extraction fails
+        """
         try:
+            # Log zip file details
+            zip_size = os.path.getsize(zip_filepath)
+            logging.info(f"Processing zip file: {zip_filepath}, size: {zip_size} bytes")
+
             # Extract the contents of the zip file
             self.extract_dir = os.path.join(self.temp_dir, "extracted_folder")
             with zipfile.ZipFile(zip_filepath, "r") as zip_ref:
+                # Log zip contents before extraction
+                for info in zip_ref.filelist:
+                    logging.info(f"Zip contains: {info.filename}, size: {info.file_size} bytes")
                 zip_ref.extractall(self.extract_dir)
-        except Exception as e:
-            print(f"Error extracting zip file: {str(e)}", flush=True)
+
+            # Log extracted contents
+            extracted_files = os.listdir(self.extract_dir)
+            logging.info(f"Extracted {len(extracted_files)} files: {extracted_files}")
+
+            files = self.file_list(self.extract_dir)
+            logging.info(f"Found {len(files)} valid image files")
+            return files
+
+        except zipfile.BadZipFile as e:
+            logging.error(f"Invalid zip file: {str(e)}")
             return None
-
-        # Now you can process the contents of the extracted folder
-        # For example, print the list of files extracted
-        extracted_files = os.listdir(self.extract_dir)
-        print(f"Extracted files: {extracted_files}", flush=True)
-
-        return self.file_list(self.extract_dir)
+        except Exception as e:
+            logging.error(f"Error extracting zip file: {str(e)}")
+            logging.error(traceback.format_exc())
+            return None
 
     def file_list(self, file_dir):
         images = (
@@ -334,17 +351,23 @@ class WebODM_API:
         return None
 
     def create_task(self, file):
+        self.temp_dir = None
         try:
-            self.temp_dir = tempfile.mkdtemp()  # Create a temporary directory
-            # Save the uploaded file to a temporary location
+            self.temp_dir = tempfile.mkdtemp()
+            logging.info(f"Created temporary directory: {self.temp_dir}")
+
+            # Save and validate uploaded file
             filename = secure_filename(file.filename)
             temp_path = os.path.join(self.temp_dir, filename)
             file.save(temp_path)
+            
+            file_size = os.path.getsize(temp_path)
+            logging.info(f"Saved uploaded file: {filename}, size: {file_size} bytes")
 
             # Extract files into a list
             files = self.extract_files(temp_path)
             if files is None:
-                return "Bad input file\n"
+                return "Failed to process zip file - see logs for details\n"
             elif len(files) < 2:
                 return f"Not enough images, images found: {len(files)}\n"
 
@@ -397,10 +420,14 @@ class WebODM_API:
             self.mydb.commit()
             return "All tasks completed and clustered\n"
         except Exception as e:
-            print(f"Error in create_task: {str(e)}", flush=True)
+            logging.error(f"Error in create_task: {str(e)}")
+            logging.error(traceback.format_exc())
+            # Don't cleanup on error to preserve files for debugging
+            self.temp_dir = None  # Prevent cleanup in finally block
             raise
         finally:
-            self.cleanup()
+            if self.temp_dir:  # Only cleanup if no errors occurred
+                self.cleanup()
 
     def authenticate(self):
         url = "https://webodm.boshang.online/api/token-auth/"
@@ -501,17 +528,21 @@ def task_api():
         if file.filename == "":
             return jsonify({"error": "No file selected for uploading"}), 400
 
+        # Log request details
+        logging.info(f"Received file upload: {file.filename}")
+        
         api.authenticate()
         result = api.create_task(file)
         return result
-    except Exception as e:
-        print(f"An error occurred: {str(e)}", file=sys.stderr)
-        print(traceback.format_exc(), file=sys.stderr)
 
-        return (
-            jsonify({"error": "An internal server error occurred", "details": str(e)}),
-            500,
-        )
+    except Exception as e:
+        logging.error(f"Error processing upload: {str(e)}")
+        logging.error(traceback.format_exc())
+        return jsonify({
+            "error": "An internal server error occurred",
+            "details": str(e),
+            "stack_trace": traceback.format_exc()
+        }), 500
 
 
 @laimatt_app.errorhandler(500)
