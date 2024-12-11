@@ -219,24 +219,32 @@ class WebODM_API:
             return None
 
     def file_list(self, file_dir):
-        images = (
-            glob.glob(os.path.join(file_dir, "*.JPG"))
-            + glob.glob(os.path.join(file_dir, "*.jpg"))
-            + glob.glob(os.path.join(file_dir, "*.png"))
-            + glob.glob(os.path.join(file_dir, "*.PNG"))
-        )
+        """
+        Recursively find all image files in directory and subdirectories
+        Returns list of tuples formatted for WebODM upload
+        """
+        images = []
+        # Walk through all subdirectories
+        for root, _, files in os.walk(file_dir):
+            for file in files:
+                # Check if file has image extension
+                if file.lower().endswith(('.jpg', '.jpeg', '.png')):
+                    image_path = os.path.join(root, file)
+                    try:
+                        with open(image_path, "rb") as img_file:
+                            images.append(
+                                (
+                                    "images",
+                                    (os.path.basename(file), img_file.read(), "image/png"),
+                                )
+                            )
+                            logging.debug(f"Added image: {image_path}")
+                    except Exception as e:
+                        logging.error(f"Error reading image {image_path}: {str(e)}")
+                        continue
 
-        files = []
-        for image_path in images:
-            with open(image_path, "rb") as img_file:
-                files.append(
-                    (
-                        "images",
-                        (os.path.basename(image_path), img_file.read(), "image/png"),
-                    )
-                )
-
-        return files
+        logging.info(f"Found {len(images)} total images in {file_dir} and subdirectories")
+        return images
 
     # def init_nodeODM(self, project_id, files, color, node):
     #     index = color - 1
