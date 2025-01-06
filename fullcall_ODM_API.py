@@ -1,7 +1,7 @@
 from flask import Flask, request, send_file, jsonify, Response
 from flask_cors import CORS
 from filter import filter_from_webodm
-from pdal_script import create_components
+# from pdal_script import create_components
 from remote_masks import remote_masks
 from enum import Enum
 from io import BytesIO
@@ -196,11 +196,29 @@ class WebODM_API:
 
             # Extract the contents of the zip file
             self.extract_dir = os.path.join(self.temp_dir, "extracted_folder")
+            os.makedirs(self.extract_dir, exist_ok=True)
+            
+            # Extract and flatten directory structure
             with zipfile.ZipFile(zip_filepath, "r") as zip_ref:
                 # Log zip contents before extraction
                 for info in zip_ref.filelist:
                     logging.info(f"Zip contains: {info.filename}, size: {info.file_size} bytes")
-                zip_ref.extractall(self.extract_dir)
+                    
+                    # Skip directories
+                    if info.filename.endswith('/'):
+                        continue
+                        
+                    # Get just the filename without path
+                    filename = os.path.basename(info.filename)
+                    
+                    # Only extract image files
+                    if filename.lower().endswith(('.jpg', '.jpeg', '.png')):
+                        # Extract to flattened directory
+                        source = zip_ref.read(info.filename)
+                        target_path = os.path.join(self.extract_dir, filename)
+                        with open(target_path, 'wb') as f:
+                            f.write(source)
+                        logging.debug(f"Extracted {info.filename} to {target_path}")
 
             # Log extracted contents
             extracted_files = os.listdir(self.extract_dir)
@@ -220,30 +238,27 @@ class WebODM_API:
 
     def file_list(self, file_dir):
         """
-        Recursively find all image files in directory and subdirectories
+        Find all image files in directory (no need for recursion since directory is flat now)
         Returns list of tuples formatted for WebODM upload
         """
         images = []
-        # Walk through all subdirectories
-        for root, _, files in os.walk(file_dir):
-            for file in files:
-                # Check if file has image extension
-                if file.lower().endswith(('.jpg', '.jpeg', '.png')):
-                    image_path = os.path.join(root, file)
-                    try:
-                        with open(image_path, "rb") as img_file:
-                            images.append(
-                                (
-                                    "images",
-                                    (os.path.basename(file), img_file.read(), "image/png"),
-                                )
+        for file in os.listdir(file_dir):
+            if file.lower().endswith(('.jpg', '.jpeg', '.png')):
+                image_path = os.path.join(file_dir, file)
+                try:
+                    with open(image_path, "rb") as img_file:
+                        images.append(
+                            (
+                                "images",
+                                (file, img_file.read(), "image/png"),
                             )
-                            logging.debug(f"Added image: {image_path}")
-                    except Exception as e:
-                        logging.error(f"Error reading image {image_path}: {str(e)}")
-                        continue
+                        )
+                        # logging.debug(f"Added image: {image_path}")
+                except Exception as e:
+                    logging.error(f"Error reading image {image_path}: {str(e)}")
+                    continue
 
-        logging.info(f"Found {len(images)} total images in {file_dir} and subdirectories")
+        logging.info(f"Found {len(images)} total images in {file_dir}")
         return images
 
     # def init_nodeODM(self, project_id, files, color, node):

@@ -25,6 +25,6 @@ def remote_masks(project_folder):
     result = subprocess.run(['python', script_path, 'F'], cwd=working_directory, capture_output=True, text=True)
 
     # Print the command's output
-    print('STDOUT:', result.stdout)
+    # print('STDOUT:', result.stdout)
 
 # remote_masks('projID_1')
